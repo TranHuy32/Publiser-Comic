@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const PostForm = () => {
+const CreateComic = () => {
     const [state, setState] = useState({
         description: '',
         title: '',
@@ -19,9 +19,7 @@ const PostForm = () => {
             // Handle file input separately
             setState({ ...state, [e.target.name]: e.target.files[0] });
         } else if (e.target.name === 'categories') {
-            const categoriesArray = e.target.value
-                .split(',')
-                .map((category) => category.trim());
+            const categoriesArray = e.target.value.split(',').map((category) => category.trim());
             setState({ ...state, [e.target.name]: categoriesArray });
         } else {
             setState({ ...state, [e.target.name]: e.target.value });
@@ -39,10 +37,7 @@ const PostForm = () => {
         formData.append('categories', state.categories);
         formData.append('image_detail', state.image_detail);
         formData.append('image_thumnail_square', state.image_thumnail_square);
-        formData.append(
-            'image_thumnail_rectangle',
-            state.image_thumnail_rectangle,
-        );
+        formData.append('image_thumnail_rectangle', state.image_thumnail_rectangle);
 
         axios
             .post('http://localhost:3000/comics/create/test', formData)
@@ -60,13 +55,7 @@ const PostForm = () => {
         <div>
             <form onSubmit={submitHandler}>
                 <div>
-                    <input
-                        type="text"
-                        placeholder="title"
-                        name="title"
-                        value={title}
-                        onChange={changeHandler}
-                    />
+                    <input type="text" placeholder="title" name="title" value={title} onChange={changeHandler} />
                 </div>
                 <div>
                     <input
@@ -78,31 +67,13 @@ const PostForm = () => {
                     />
                 </div>
                 <div>
-                    <input
-                        type="text"
-                        placeholder="author"
-                        name="author"
-                        value={author}
-                        onChange={changeHandler}
-                    />
+                    <input type="text" placeholder="author" name="author" value={author} onChange={changeHandler} />
                 </div>
                 <div>
-                    <input
-                        type="number"
-                        placeholder="year"
-                        name="year"
-                        value={year}
-                        onChange={changeHandler}
-                    />
+                    <input type="number" placeholder="year" name="year" value={year} onChange={changeHandler} />
                 </div>
                 <div>
-                    <input
-                        type="number"
-                        placeholder="reads"
-                        name="reads"
-                        value={reads}
-                        onChange={changeHandler}
-                    />
+                    <input type="number" placeholder="reads" name="reads" value={reads} onChange={changeHandler} />
                 </div>
                 <div>
                     <input
@@ -114,12 +85,7 @@ const PostForm = () => {
                     />
                 </div>
                 <div>
-                    <input
-                        type="file"
-                        name="image_detail"
-                        accept="image/png, image/jpeg"
-                        onChange={changeHandler}
-                    />
+                    <input type="file" name="image_detail" accept="image/png, image/jpeg" onChange={changeHandler} />
                 </div>
                 <div>
                     <input
@@ -143,4 +109,4 @@ const PostForm = () => {
     );
 };
 
-export default PostForm;
+export default CreateComic;

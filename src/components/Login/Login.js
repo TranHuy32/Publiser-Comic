@@ -1,40 +1,39 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import axios from 'axios';
+import { useSignIn } from 'react-auth-kit';
 
-async function LoginPublisher(credentials) {
-    return axios
-        .post('http://localhost:3000/publisherauth/login', credentials, {
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-        .then((response) => response.data);
-}
-
-export default function Login({ setToken }) {
-    const [publisherName, setPublisherName] = useState();
-    const [password, setPassword] = useState();
+export default function Login() {
+    const signIn = useSignIn();
+    const [formData, setFormData] = React.useState({
+        publisherName: '',
+        password: '',
+    });
     const [isWrongCredentials, setIsWrongCredentials] = useState(false);
 
-    useEffect(()=>{
-        setIsWrongCredentials(false)
+    useEffect(() => {
+        setIsWrongCredentials(false);
+    }, [formData]);
 
-    },[publisherName, password])
-    
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        const token = await LoginPublisher({
-            publisherName,
-            password,
+        axios.post('http://localhost:3000/publisherauth/login', formData).then((response) => {
+            console.log(response);
+            if (!response.data) {
+                setIsWrongCredentials(true);
+            } else {
+                console.log('ok');
+                if (
+                    signIn({
+                        token: response.data.accessToken,
+                        tokenType: 'Bearer',
+                        expiresIn: 100,
+                        authState: { publisherName: formData.publisherName },
+                    })
+                ) {
+                }
+            }
         });
-        if (token === false) {
-            setIsWrongCredentials(true); 
-        } else {
-            console.log(token);
-            setIsWrongCredentials(false);
-            setToken(token);
-        }
     };
 
     return (
@@ -45,25 +44,35 @@ export default function Login({ setToken }) {
                     <p>PublisherName</p>
                     <input
                         type="text"
-                        onChange={(e) => setPublisherName(e.target.value)}
+                        onChange={(e) =>
+                            setFormData({
+                                ...formData,
+                                publisherName: e.target.value,
+                            })
+                        }
                     />
                 </label>
                 <label>
                     <p>Password</p>
                     <input
                         type="password"
-                        onChange={(e) => setPassword(e.target.value)}
+                        onChange={(e) =>
+                            setFormData({
+                                ...formData,
+                                password: e.target.value,
+                            })
+                        }
                     />
                 </label>
                 {isWrongCredentials && <p>Sai tài khoản hoặc mật khẩu</p>}
                 <div>
-                    <button type="submit">Submit</button>
+                    <button type="submit">Login</button>
                 </div>
             </form>
         </div>
     );
 }
 
-Login.propTypes = {
-    setToken: PropTypes.func.isRequired,
-};
+// Login.propTypes = {
+//     setToken: PropTypes.func.isRequired,
+// };
