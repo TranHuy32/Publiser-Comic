@@ -21,9 +21,11 @@ const MainRoutes = () => {
                 <Route
                     path={'/'}
                     element={
+                        // <RequireAuth loginPath={'/publisher/login'}>
                         <DefaultLayout>
                             <Home />
                         </DefaultLayout>
+                        // </RequireAuth>
                     }
                     exact
                 />

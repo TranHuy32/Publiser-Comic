@@ -7,9 +7,9 @@ export default function PublisherComics() {
     const navigate = useNavigate();
 
     const token = localStorage.getItem('token');
-    // const config = {
-    //     headers: { Authorization: `Bearer ${token}` },
-    // };
+    const config = {
+        headers: { Authorization: `Bearer ${token}` },
+    };
 
     // const handleUpChapter = () => {
     //     navigate(`/chapter/create/${comic._id}`);
@@ -17,9 +17,10 @@ export default function PublisherComics() {
 
     useEffect(() => {
         axios
-            .get(`http://localhost:3000/comics/publisher/comics`, { Authorization: `Bearer ${token}` })
+            .get(`http://localhost:3000/comics/publisher/comics`, config)
             .then((response) => {
                 const data = response.data;
+                console.log(data);
                 setComics(data);
             })
             .catch((error) => {

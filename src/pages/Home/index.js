@@ -1,7 +1,6 @@
 
 
 
-
 export default function Home() {
 
     // const { isAuthenticated, getToken } = useAuthUser();
@@ -26,9 +25,10 @@ export default function Home() {
     //     }
     // }, [isAuthenticated, getToken]);
 
+
     return (
         <div className='wrapper'>
-            <h1>Welcome to the Home Page!</h1>
+            <h1>NewComics</h1>
             {/* {isAuthenticated() ? <p>{message}</p> : <p>Please log in.</p>} */}
         </div>
     );

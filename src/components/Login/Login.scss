@@ -1,0 +1,136 @@
+.loginText {
+    position: absolute;
+    width: 400px;
+    height: 79px;
+    left: 468px;
+    top: 163px;
+    font-family: 'Oswald', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 3rem;
+    line-height: 79px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #ffffff;
+}
+
+.labelName {
+    > p {
+        position: absolute;
+        width: 91px;
+        height: 23px;
+        left: 391px;
+        top: 274px;
+        font-family: 'Roboto', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 23px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+
+        color: #ffffff;
+    }
+    > input {
+        padding-left: 3px;
+        box-sizing: border-box;
+        position: absolute;
+        width: 357px;
+        height: 25px;
+        left: 391px;
+        top: 306px;
+        border-radius: 3px;
+        background: #534141;
+        // border: 2px solid #ffffff;
+        box-shadow: 0 0 0 1px #ffffff;
+    }
+}
+
+.labelPass {
+    > p {
+        padding-left: 3px;
+        position: absolute;
+        width: 91px;
+        height: 23px;
+        left: 391px;
+        top: 363px;
+
+        font-family: 'Roboto', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 23px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+
+        color: #ffffff;
+    }
+    > input {
+        padding-left: 3px;
+        box-sizing: border-box;
+        position: absolute;
+        width: 357px;
+        height: 25px;
+        left: 391px;
+        top: 395px;
+        border-radius: 3px;
+        background: #534141;
+        // border: 2px solid #ffffff;
+        box-shadow: 0 0 0 1px #ffffff;
+    }
+}
+
+.buttonLogin {
+    height: 34px;
+    width: 143px;
+    border-radius: 10px;
+    left: 498px;
+    top: 495px;
+    position: absolute;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    color: #000000;
+    border: 2px solid #ffffff;
+    &:hover {
+        background-color: #08acc9;
+    }
+
+    &:active {
+        background-color: #005c7a;
+        border-color: #005c7a;
+    }
+}
+.errWrongAuth {
+    position: absolute;
+    width: 201px;
+    height: 19px;
+    left: 469px;
+    top: 448px;
+
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+
+    color: #ffffff;
+}
+.errEmpty {
+    position: absolute;
+    width: 274px;
+    height: 19px;
+    left: 432px;
+    top: 448px;
+
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+
+    color: #ffffff;
+}
