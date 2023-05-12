@@ -1,7 +1,9 @@
-import { useNavigate } from 'react-router-dom';
-import { useSignOut } from 'react-auth-kit';
+
+
+
 
 export default function Home() {
+
     // const { isAuthenticated, getToken } = useAuthUser();
     // const [message, setMessage] = useState('');
 
@@ -24,18 +26,9 @@ export default function Home() {
     //     }
     // }, [isAuthenticated, getToken]);
 
-    const singOut = useSignOut();
-    const navigate = useNavigate();
-
-    const logout = () => {
-        singOut();
-        navigate('/login');
-    };
-
     return (
-        <div>
+        <div className='wrapper'>
             <h1>Welcome to the Home Page!</h1>
-            <button onClick={logout}>Logout</button>
             {/* {isAuthenticated() ? <p>{message}</p> : <p>Please log in.</p>} */}
         </div>
     );

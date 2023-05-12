@@ -8,14 +8,28 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { DefaultLayout } from '~/components/Layout';
 import { RequireAuth } from 'react-auth-kit';
 import CreateComic from '~/pages/CreateComics/CreateComic';
-
+import Register from '~/components/Register/Register';
+import DetailComic from '~/pages/DetailComic/DetailComic';
+import CreateChapter from '~/pages/CreateChapter/CreateChapter';
+import DetailChapter from '~/pages/DetailChapter/DetailChapter';
 //Public routes
 const MainRoutes = () => {
     return (
         <BrowserRouter>
             <Routes>
+                {/* Home */}
                 <Route
-                    path={'/login'}
+                    path={'/'}
+                    element={
+                        <DefaultLayout>
+                            <Home />
+                        </DefaultLayout>
+                    }
+                    exact
+                />
+                {/* Route publisher */}
+                <Route
+                    path={'/publisher/login'}
                     element={
                         <DefaultLayout>
                             <Login />
@@ -24,20 +38,19 @@ const MainRoutes = () => {
                     exact
                 />
                 <Route
-                    path={'/'}
+                    path={'/publisher/register'}
                     element={
-                        <RequireAuth loginPath={'/login'}>
-                            <DefaultLayout>
-                                <Home />
-                            </DefaultLayout>
-                        </RequireAuth>
+                        <DefaultLayout>
+                            <Register />
+                        </DefaultLayout>
                     }
                     exact
                 />
+                {/* Route comic */}
                 <Route
-                    path={'/comic'}
+                    path={'/comic/mycomic'}
                     element={
-                        <RequireAuth loginPath={'/login'}>
+                        <RequireAuth loginPath={'/publisher/login'}>
                             <DefaultLayout>
                                 <PublisherComics />
                             </DefaultLayout>
@@ -48,9 +61,44 @@ const MainRoutes = () => {
                 <Route
                     path={'/comic/create'}
                     element={
-                        <RequireAuth loginPath={'/login'}>
+                        <RequireAuth loginPath={'/publisher/login'}>
                             <DefaultLayout>
                                 <CreateComic />
+                            </DefaultLayout>
+                        </RequireAuth>
+                    }
+                    exact
+                />
+                <Route
+                    path={'/comic/:id'}
+                    element={
+                        <RequireAuth loginPath={'/publisher/login'}>
+                            <DefaultLayout>
+                                <DetailComic />
+                            </DefaultLayout>
+                        </RequireAuth>
+                    }
+                    exact
+                />
+
+                {/* Route chapter  */}
+                <Route
+                    path={'/chapter/create/:id'}
+                    element={
+                        <RequireAuth loginPath={'/publisher/login'}>
+                            <DefaultLayout>
+                                <CreateChapter />
+                            </DefaultLayout>
+                        </RequireAuth>
+                    }
+                    exact
+                />
+                <Route
+                    path={'/chapter/:id'}
+                    element={
+                        <RequireAuth loginPath={'/publisher/login'}>
+                            <DefaultLayout>
+                                <DetailChapter />
                             </DefaultLayout>
                         </RequireAuth>
                     }
