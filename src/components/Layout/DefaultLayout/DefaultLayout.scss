@@ -7,8 +7,6 @@
     min-height: 1080px;
 }
 .comics-comics {
-    // background-color: #121212;
-    border: 1px none;
     min-height: 1080px;
     width: 1920px;
     position: relative;
@@ -112,4 +110,6 @@
 
 .bodyWrapper {
     padding: 15px;
+    justify-content: center;
+    display: flex;
 }

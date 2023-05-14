@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
+import { FireBaseContext } from '~/App';
 
 const CreateChapter = () => {
     const token = localStorage.getItem('token');
@@ -11,7 +12,9 @@ const CreateChapter = () => {
         images_content: [null],
     });
 
+    const fireBaseToken = useContext(FireBaseContext)
     const { id } = useParams();
+
     const changeHandler = (e) => {
         if (e.target.name === 'image_thumnail') {
             // Handle file input separately
@@ -49,6 +52,7 @@ const CreateChapter = () => {
         //     return;
         // }
         const formData = new FormData();
+        // const fireBaseState = new FormData();
         formData.append('comic_id', id);
         formData.append('chapter_des', state.chapter_des);
         formData.append('image_thumnail', state.image_thumnail);
@@ -60,6 +64,24 @@ const CreateChapter = () => {
             .then((response) => {
                 console.log(response);
                 // navigate(`/comic/${response.data._id}`);
+                console.log('1', fireBaseToken);
+                if (fireBaseToken) {
+                    // fireBaseState.append('token', fireBaseToken);
+                    // fireBaseState.append('title', id);
+                    // fireBaseState.append('body', state.chapter_des);
+                    const fireBaseState = {
+                        token: fireBaseToken,
+                        body: state.chapter_des,
+                        title: id
+                    }
+                    console.log(fireBaseState);
+                    // for (const [key, value] of fireBaseState.entries()) {
+                    //     console.log(`${key}: ${value}`);
+                    axios.post('http://localhost:3000/push-notification', fireBaseState, config)
+                }
+
+
+
             })
             .catch((error) => {
                 console.log(error);

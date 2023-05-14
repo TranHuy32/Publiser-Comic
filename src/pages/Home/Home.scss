@@ -1,0 +1,87 @@
+.wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 60px;
+}
+
+.comics-info {
+    position: relative;
+    width: 896px;
+    height: 251px;
+    left: 0px;
+    top: 0px;
+    display: flex;
+}
+.comic-info {
+    position: absolute;
+    margin-bottom: 20px;
+    display: flex;
+}
+.comic-info:first-child {
+    padding-top: 0;
+}
+.img-thumnail {
+    position: relative;
+    width: 192px;
+    height: 251px;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    margin-left: 40px;
+    img:hover {
+        transform: scale(1.05);
+    }
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    // border: 1px solid #ffffff;
+    display: block;
+    margin: 0 auto;
+    transition: transform 0.2s ease-in-out;
+}
+.info {
+    margin-left: 60px;
+    display: flex;
+    flex-direction: column;
+}
+.title {
+    font: bold 32px/38px 'Roboto', sans-serif;
+    margin: 20px 0px;
+    overflow: hidden;
+}
+.chapter {
+    font: 13px 'Roboto', sans-serif;
+    margin-bottom: 15px;
+    color: #b1b3b2;
+    overflow: hidden;
+}
+.des {
+    font: 13px 'Roboto', sans-serif;
+    display: inline-block;
+    height: 70px;
+    max-width: 656px;
+    margin-bottom: 15px;
+    overflow: hidden;
+    word-wrap: break-word;
+}
+.view {
+    font: 13px 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 23px;
+}
+
+a:hover {
+    color: #7f8ddd;
+    cursor: pointer;
+}

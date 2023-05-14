@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 export default function DetailChapter() {
     const [chapter, setChapter] = useState();
@@ -9,6 +9,7 @@ export default function DetailChapter() {
     const token = localStorage.getItem('token');
 
     const { id } = useParams();
+    // let chapter1 = useRef(chapter)
 
     useEffect(() => {
         axios
@@ -16,13 +17,11 @@ export default function DetailChapter() {
             .then((response) => {
                 const data = response.data;
                 setChapter(data);
-                console.log(response);
             })
             .catch((error) => {
                 console.log(error);
             });
     }, [id, token]);
-    console.log(chapter);
     if (chapter) {
         return (
             <div>

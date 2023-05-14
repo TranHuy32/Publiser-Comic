@@ -1,6 +1,6 @@
-
-
-
+import { useState, useNavigate, useEffect } from "react";
+import axios from "axios";
+import './Home.scss'
 export default function Home() {
 
     // const { isAuthenticated, getToken } = useAuthUser();
@@ -25,11 +25,45 @@ export default function Home() {
     //     }
     // }, [isAuthenticated, getToken]);
 
+    const [comics, setComics] = useState([]);
+    // const navigate = useNavigate();
+
+    const token = localStorage.getItem('token');
+
+    // const handleUpChapter = () => {
+    //     navigate(`/comics/${comic._id}`);
+    // };
+
+    useEffect(() => {
+        axios
+            .get(`http://localhost:3000/comics/home/all-comics`)
+            .then((response) => {
+                const data = response.data;
+                console.log(data);
+                setComics(data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }, [token]);
 
     return (
         <div className='wrapper'>
-            <h1>NewComics</h1>
-            {/* {isAuthenticated() ? <p>{message}</p> : <p>Please log in.</p>} */}
+            {comics.map((comic, index) => (
+                <div className="comics-info" key={index}>
+                    <div className="comic-info" >
+                        <a className="img-thumnail">
+                            <img src={comic.image_detail_path} title={comic.title} />
+                        </a>
+                        <div className="info">
+                            <a className="title">{comic.title}</a>
+                            <a className="chapter">{'Chapter ' + comic.chapters.length + `: ${comic.chapters[comic.chapters.length - 1].chapter_des}`}</a>
+                            <a className="des">{comic.description}</a>
+                            <a className="views">{'Lượt xem: ' + comic.reads}</a>
+                        </div>
+                    </div>
+                </div>
+            ))}
         </div>
     );
 }

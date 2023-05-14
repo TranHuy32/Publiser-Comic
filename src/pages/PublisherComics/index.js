@@ -36,15 +36,15 @@ export default function PublisherComics() {
                     <ul>
                         {comics.map((comic, index) => (
                             <li key={index}>
-                                <a href='/'>{comic.title}</a>
-                                <a href='/'>
+                                <a href={`/comic/${comic._id}`}>{comic.title}</a>
+                                <a href={`/comic/${comic._id}`}>
                                     <img src={comic.image_detail} alt={comic.title} />
                                 </a>
                             </li>
                         ))}
                     </ul>
                 </div>
-            </div>
+            </div >
         );
     }
     return <div>Loading...</div>;

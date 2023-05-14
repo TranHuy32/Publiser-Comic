@@ -2,7 +2,7 @@
 import './DefaultLayout.scss'
 import { useNavigate } from 'react-router-dom';
 import { useSignOut } from 'react-auth-kit';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, memo } from 'react';
 
 
 function DefaultLayout({ children }) {
@@ -77,4 +77,4 @@ function DefaultLayout({ children }) {
     );
 }
 
-export default DefaultLayout;
+export default memo(DefaultLayout);
