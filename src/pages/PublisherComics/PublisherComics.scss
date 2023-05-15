@@ -1,0 +1,59 @@
+.wrapper {
+    display: flex;
+    justify-content: space-evenly;
+    // justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.comics-publisher-info {
+    width: 192px;
+    height: 251px;
+    margin-bottom: 60px;
+    display: flex;
+}
+.comic-publisher-info {
+    position: absolute;
+}
+.comic-info:first-child {
+    padding-top: 0;
+}
+.img-publisher-thumnail {
+    position: relative;
+    width: 192px;
+    height: 251px;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    img:hover {
+        transform: scale(1.05);
+    }
+    img {
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+        // border: 1px solid #ffffff;
+        display: block;
+        margin: 0 auto;
+        transition: transform 0.2s ease-in-out;
+    }
+}
+
+.publisher-title {
+    margin-top: 10px;
+    font: 15px 'Roboto', sans-serif;
+    overflow: hidden;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    overflow-x: hidden;
+}
+
+.publisher-info:hover .publisher-title {
+    color: #7f8ddd;
+    cursor: pointer;
+}

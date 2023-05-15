@@ -1,0 +1,82 @@
+.wrapperCreateComics {
+    width: 900px;
+    justify-content: flex-start;
+    margin-top: 60px;
+}
+
+.CreateComicForm > div {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0px;
+    margin-bottom: 30px;
+}
+
+.CreateComicForm > div > label {
+    font: 18px 'Roboto', sans-serif;
+    width: 900px;
+}
+.CreateComicForm > div > input {
+    height: 40px;
+    border-radius: 10px;
+    padding-left: 10px;
+    margin-top: 5px;
+}
+.CreateComicForm > div > textarea {
+    height: 65px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+div.upload {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.upload > div {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+.inputFile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+.inputFile,
+.uploadLabel {
+    font: 18px 'Roboto', sans-serif;
+    width: 230px;
+    height: 50px;
+    font-size: 1.25em;
+    font-weight: 700;
+    color: white;
+    background-color: rgb(20, 171, 231);
+    display: inline-block;
+    cursor: pointer;
+    line-height: 50px;
+    border-radius: 10px;
+    &:hover {
+        background-color: rgb(81, 90, 221);
+    }
+    &:active {
+        background-color: rgb(20, 171, 231);
+    }
+}
+input.createSubmitBtn {
+    cursor: pointer;
+    font: 18px 'Roboto', sans-serif;
+    background-color: rgb(20, 171, 231);
+    height: 40px;
+    width: 200px;
+    margin-left: 350px;
+    &:hover {
+        background-color: rgb(81, 90, 221);
+    }
+    &:active {
+        background-color: rgb(20, 171, 231);
+    }
+}

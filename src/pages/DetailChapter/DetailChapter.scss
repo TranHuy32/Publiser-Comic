@@ -1,0 +1,21 @@
+.detailChapterWrapper {
+    width: 100%;
+    max-height: 100%;
+    margin-top: 30px;
+}
+div.detailChapterWrapper > h2 {
+    display: flex;
+    justify-content: flex-start;
+    font: 50px 'Kanit', sans-serif;
+    margin-bottom: 30px;
+}
+div.detailChapterWrapper ul {
+    display: flex;
+    flex-wrap: wrap;
+}
+img {
+    max-width: 100%;
+    max-height: 100%;
+    width: 100%;
+    height: auto;
+}

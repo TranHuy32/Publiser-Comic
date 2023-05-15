@@ -52,11 +52,11 @@ export default function Home() {
             {comics.map((comic, index) => (
                 <div className="comics-info" key={index}>
                     <div className="comic-info" >
-                        <a className="img-thumnail">
+                        <a href={`/comic/${comic._id}`} className="img-thumnail">
                             <img src={comic.image_detail_path} title={comic.title} />
                         </a>
                         <div className="info">
-                            <a className="title">{comic.title}</a>
+                            <a href={`/comic/${comic._id}`} className="title">{comic.title}</a>
                             <a className="chapter">{'Chapter ' + comic.chapters.length + `: ${comic.chapters[comic.chapters.length - 1].chapter_des}`}</a>
                             <a className="des">{comic.description}</a>
                             <a className="views">{'Lượt xem: ' + comic.reads}</a>

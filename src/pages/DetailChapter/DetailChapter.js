@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useState, useEffect, useRef } from 'react';
-
+import './DetailChapter.scss'
 export default function DetailChapter() {
     const [chapter, setChapter] = useState();
     // const navigate = useNavigate();
@@ -24,7 +24,7 @@ export default function DetailChapter() {
     }, [id, token]);
     if (chapter) {
         return (
-            <div>
+            <div className='detailChapterWrapper'>
                 <h2>{chapter.chapter_des}</h2>
 
                 <ul>

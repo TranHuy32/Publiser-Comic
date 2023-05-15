@@ -1,0 +1,98 @@
+div.detailComic {
+    width: 900px;
+    max-height: 100%;
+    margin-top: 80px;
+}
+div.detailComic > h2 {
+    display: flex;
+    justify-content: center;
+    font: bold 70px 'Kanit', sans-serif;
+    margin-bottom: 30px;
+}
+div.detailComic div.detailComicInfo {
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 30px;
+}
+
+div.detailComicText {
+    margin-top: 25px;
+    margin-left: 60px;
+}
+
+img.detailComicThumnail {
+    max-width: 100%;
+    max-height: 100%;
+    width: 300px;
+    height: auto;
+    object-fit: contain;
+    // border: 1px solid #ffffff;
+    display: block;
+    transition: transform 0.2s ease-in-out;
+}
+ul.listInfo {
+    li {
+        display: flex;
+        p {
+            color: #cfc6c6;
+            font: 22px 'Roboto', sans-serif;
+        }
+        p:first-child {
+            width: 200px;
+            margin: 0px 30px 20px 0px;
+            margin-bottom: 100px;
+        }
+        button {
+            color: #121212;
+            cursor: pointer;
+            width: 150px;
+            height: 50px;
+            font-weight: bold;
+            font-size: 17px;
+            &:hover {
+                background-color: rgb(81, 90, 221);
+            }
+            &:active {
+                background-color: rgb(20, 171, 231);
+            }
+        }
+    }
+}
+
+div.detailComicDes {
+    margin-top: 70px;
+    margin-bottom: 70px;
+    height: 200px;
+    p:first-child {
+        padding: 10px;
+        font-size: 25px;
+        color: #2980b9;
+    }
+    p.detaiDes {
+        padding: 10px;
+        height: 100%;
+        width: 100%;
+        border-radius: 10px;
+        border: 1px solid #2980b9;
+    }
+}
+
+.detailComicListChapter {
+    p:first-child {
+        border-bottom: 3px solid #2980b9;
+        font-weight: bold;
+        font-size: 30px;
+        padding: 10px;
+        color: #2980b9;
+    }
+    li.detailComicChapter {
+        display: flex;
+        padding: 10px;
+        margin: 10px;
+        border-bottom: 1px dashed #ddd;
+        &:hover a {
+            color: #2980b9;
+            cursor: pointer;
+        }
+    }
+}

@@ -1,0 +1,88 @@
+.wrapperCreateChapters {
+    width: 900px;
+    justify-content: flex-start;
+    margin-top: 60px;
+}
+
+.createChapterForm > div {
+    display: flex;
+    flex-direction: column;
+    margin: 50px 0px;
+    margin-bottom: 50px;
+}
+
+.createChapterForm > div > label {
+    font: 18px 'Roboto', sans-serif;
+    width: 900px;
+}
+.createChapterForm > div > input {
+    height: 40px;
+    border-radius: 10px;
+    padding-left: 10px;
+    margin-top: 5px;
+}
+
+div.uploadChapter {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+}
+
+.uploadChapter > div {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+.inputFileChapter {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+.inputFileChapter,
+.uploadChapterLabel {
+    font: 18px 'Roboto', sans-serif;
+    width: 230px;
+    height: 50px;
+    font-size: 1.25em;
+    font-weight: 700;
+    color: white;
+    background-color: rgb(20, 171, 231);
+    display: inline-block;
+    cursor: pointer;
+    line-height: 50px;
+    border-radius: 10px;
+    &:hover {
+        background-color: rgb(81, 90, 221);
+    }
+    &:active {
+        background-color: rgb(20, 171, 231);
+    }
+}
+input.createChapterSubmitBtn {
+    cursor: pointer;
+    font: 18px 'Roboto', sans-serif;
+    background-color: rgb(20, 171, 231);
+    height: 40px;
+    width: 200px;
+    padding-right: 10px;
+    // margin-left: 350px;
+    text-align: center;
+    &:hover {
+        background-color: rgb(81, 90, 221);
+    }
+    &:active {
+        background-color: rgb(20, 171, 231);
+    }
+}
+div.wrapperCreateChapters h2 {
+    text-align: center;
+    margin-top: 30px;
+}
+
+div.listCreateChapterBtn {
+    flex-direction: row;
+    justify-content: space-around;
+}

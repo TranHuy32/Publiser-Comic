@@ -1,10 +1,11 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import { FireBaseContext } from '~/App';
-
+import './CreateChapter.scss'
 const CreateChapter = () => {
     const token = localStorage.getItem('token');
+    const [isSucess, setIsSucess] = useState(false);
     const navigate = useNavigate();
     const [state, setState] = useState({
         chapter_des: '',
@@ -14,6 +15,11 @@ const CreateChapter = () => {
 
     const fireBaseToken = useContext(FireBaseContext)
     const { id } = useParams();
+
+
+    useEffect(() => {
+        setIsSucess(false)
+    }, [state])
 
     const changeHandler = (e) => {
         if (e.target.name === 'image_thumnail') {
@@ -31,6 +37,11 @@ const CreateChapter = () => {
         }
         console.log();
     };
+
+    const backToComicHander = () => {
+        navigate(`/comic/${id}`)
+    }
+
 
     const config = {
         headers: { Authorization: `Bearer ${token}` },
@@ -63,7 +74,7 @@ const CreateChapter = () => {
             .post('http://localhost:3000/chapters/createFile', formData, config)
             .then((response) => {
                 console.log(response);
-                // navigate(`/comic/${response.data._id}`);
+                setIsSucess(true)
                 console.log('1', fireBaseToken);
                 if (fireBaseToken) {
                     // fireBaseState.append('token', fireBaseToken);
@@ -74,9 +85,6 @@ const CreateChapter = () => {
                         body: state.chapter_des,
                         title: id
                     }
-                    console.log(fireBaseState);
-                    // for (const [key, value] of fireBaseState.entries()) {
-                    //     console.log(`${key}: ${value}`);
                     axios.post('http://localhost:3000/push-notification', fireBaseState, config)
                 }
 
@@ -90,37 +98,54 @@ const CreateChapter = () => {
     const { chapter_des } = state;
 
     return (
-        <div>
-            <form onSubmit={submitHandler}>
+        <div className='wrapperCreateChapters'>
+            <form className='createChapterForm' onSubmit={submitHandler}>
                 <div>
+                    <label>Tên chapter:</label>
                     <input
                         type="text"
-                        placeholder="chapter_des"
+                        placeholder="Tên chapter..."
                         name="chapter_des"
                         value={chapter_des}
                         onChange={changeHandler}
                         required
                     />
                 </div>
-                <div>
-                    <input
-                        type="file"
-                        name="image_thumnail"
-                        accept="image/png, image/jpeg"
-                        onChange={changeHandler}
-                    />
+                <div className='uploadChapter'>
+                    <div>
+                        <label htmlFor='image_thumnail' className='uploadChapterLabel'>Thumnail</label>
+                        <input
+                            className='inputFileChapter'
+                            type="file"
+                            id='image_thumnail'
+                            name="image_thumnail"
+                            accept="image/png, image/jpeg"
+                            onChange={changeHandler}
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor='images_content' className='uploadChapterLabel'>Truyện</label>
+                        <input
+                            className='inputFileChapter'
+                            type="file"
+                            id='images_content'
+                            name="images_content"
+                            accept="image/png, image/jpeg"
+                            onChange={changeHandler}
+                            multiple
+                            required
+                        />
+                    </div>
                 </div>
-                <div>
-                    <input
-                        type="file"
-                        name="images_content"
-                        accept="image/png, image/jpeg"
-                        onChange={changeHandler}
-                        multiple
-                    />
+                <div className='listCreateChapterBtn'>
+                    <input className='createChapterSubmitBtn' type="submit" value="Đăng Chapter" />
+                    <input className='createChapterSubmitBtn' onClick={backToComicHander} value="Back to comic" />
                 </div>
-                <input type="submit" value="submit" />
+
             </form>
+            {isSucess && <h2>Đăng chapter thành công</h2>}
+
         </div>
     );
 };

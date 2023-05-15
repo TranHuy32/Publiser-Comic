@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import './PublisherComics.scss'
 
 export default function PublisherComics() {
     const [comics, setComics] = useState([]);
@@ -27,24 +28,22 @@ export default function PublisherComics() {
                 console.log(error);
             });
     }, [token]);
-    console.log(comics);
     if (comics) {
         return (
-            <div>
-                <h2>Truyện tôi đã đăng</h2>
-                <div>
-                    <ul>
-                        {comics.map((comic, index) => (
-                            <li key={index}>
-                                <a href={`/comic/${comic._id}`}>{comic.title}</a>
-                                <a href={`/comic/${comic._id}`}>
-                                    <img src={comic.image_detail} alt={comic.title} />
-                                </a>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            </div >
+            <div className='wrapper'>
+                {comics.map((comic, index) => (
+                    <div className="comics-publisher-info" key={index}>
+                        <div className="comic-publisher-info" >
+                            <a href={`/comic/${comic._id}`} className="img-publisher-thumnail">
+                                <img src={comic.image_detail_path} title={comic.title} />
+                            </a>
+                            <div className="publisher-info">
+                                <a href={`/comic/${comic._id}`} className="publisher-title">{comic.title}</a>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
         );
     }
     return <div>Loading...</div>;

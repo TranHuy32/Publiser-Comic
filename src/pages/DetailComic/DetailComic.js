@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import './DetailComic.scss'
 
 export default function DetailComic() {
     const [comic, setComic] = useState();
@@ -27,24 +28,48 @@ export default function DetailComic() {
     }, [id, token]);
     if (comic) {
         return (
-            <div>
+            <div className='detailComic'>
                 <h2>{comic.title}</h2>
-                <img src={comic.image_detail_path} alt={comic.title} />
-                <p>Tác giả : {comic.author}</p>
-                <p>Categories: {comic.categories.join(', ')}</p>
-                <p>Mô tả: {comic.description}</p>
-                <p>Chapter: </p>
-                <ul>
-                    {comic.chapters.map((chapter, index) => (
-                        <li key={index}>
+                <div className='detailComicInfo'>
+                    <img className='detailComicThumnail' src={comic.image_detail_path} alt={comic.title} />
+                    <div className='detailComicText'>
+                        <ul className='listInfo'>
+                            <li>
+                                <p >Tác giả:</p>
+                                <p > {comic.author}</p>
+                            </li>
+                            <li>
+                                <p >Categories:</p>
+                                <p >{comic.categories.join(', ')}</p>
+                            </li>
+                            <li>
+                                <p >Lượt xem:</p>
+                                <p >{comic.reads}</p>
+                            </li>
+                            <li><button onClick={handleUpChapter}>Đăng chapter</button>
+                            </li>
+                        </ul>
 
-                            <a href={`/chapter/${chapter.chapter_id}`}>{`Chapter ${index + 1}: ${chapter.chapter_des
-                                }`}</a>
-                        </li>
-                    ))}
-                </ul>
-                <button onClick={handleUpChapter}>Đăng chapter</button>
-            </div>
+                    </div>
+                </div>
+                <div className='detailComicDes'>
+                    <p>Mô tả:</p>
+                    <p className='detaiDes'>{comic.description}</p>
+                </div>
+                <div className='detailComicListChapter'>
+                    <p >Dang sách chương: </p>
+                    <ul>
+                        {comic.chapters.map((chapter, index) => (
+                            <li key={index} className='detailComicChapter'>
+
+                                <a href={`/chapter/${chapter.chapter_id}`}>{`Chapter ${index + 1}: ${chapter.chapter_des
+                                    }`}</a>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </div >
+
         );
     }
     return <div>Loading...</div>;

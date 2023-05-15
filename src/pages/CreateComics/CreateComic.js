@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import './CreateComic.scss'
 const CreateComic = () => {
     const token = localStorage.getItem('token');
     const navigate = useNavigate();
@@ -76,12 +76,13 @@ const CreateComic = () => {
     const { description, title, author, year, categories } = state;
 
     return (
-        <div>
-            <form onSubmit={submitHandler}>
+        <div className='wrapperCreateComics'>
+            <form className='CreateComicForm' onSubmit={submitHandler}>
                 <div>
+                    <label>Tên truyện:</label>
                     <input
                         type="text"
-                        placeholder="title"
+                        placeholder="Tên truyện ...."
                         name="title"
                         value={title}
                         onChange={changeHandler}
@@ -89,66 +90,87 @@ const CreateComic = () => {
                     />
                 </div>
                 <div>
+                    <label>Nội dung:</label>
                     <textarea
-                        placeholder="description"
+                        placeholder="Mô tả ....................."
                         name="description"
                         value={description}
                         onChange={changeHandler}
+                        required
                     ></textarea>
                 </div>
                 <div>
+                    <label>Tác giả:</label>
                     <input
                         type="text"
-                        placeholder="author"
+                        placeholder="Tác giả"
                         name="author"
                         value={author}
-                        onChange={changeHandler}
-                    />
-                </div>
-                <div>
-                    <input
-                        type="number"
-                        placeholder="year"
-                        name="year"
-                        value={year}
-                        onChange={changeHandler}
-                    />
-                </div>
-                <div>
-                    <input
-                        type="text"
-                        placeholder="categories"
-                        name="categories"
-                        value={categories.join(', ')}
-                        onChange={changeHandler}
-                    />
-                </div>
-                <div>
-                    <input
-                        type="file"
-                        name="image_detail"
-                        accept="image/png, image/jpeg"
                         onChange={changeHandler}
                         required
                     />
                 </div>
                 <div>
+                    <label>Xuất bản năm:</label>
                     <input
-                        type="file"
-                        name="image_thumnail_square"
-                        accept="image/png, image/jpeg"
+                        type="number"
+                        placeholder="2001..."
+                        name="year"
+                        value={year}
                         onChange={changeHandler}
+                        required
                     />
                 </div>
                 <div>
+                    <label>Thể loại:</label>
                     <input
-                        type="file"
-                        name="image_thumnail_rectangle"
-                        accept="image/png, image/jpeg"
+                        type="text"
+                        placeholder="Thể loại"
+                        name="categories"
+                        value={categories.join(', ')}
                         onChange={changeHandler}
+                        required
                     />
                 </div>
-                <input type="submit" value="submit" />
+                <div className='upload'>
+                    <div>
+                        <label className='uploadLabel' htmlFor="image_detail">Thumnail chính</label>
+                        <input
+                            className='inputFile'
+                            type="file"
+                            name="image_detail"
+                            id='image_detail'
+                            accept="image/png, image/jpeg"
+                            onChange={changeHandler}
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label className='uploadLabel' htmlFor="image_thumnail_square">Thumnail vuông</label>
+                        <input
+                            className='inputFile'
+                            type="file"
+                            id='image_thumnail_square'
+                            name="image_thumnail_square"
+                            accept="image/png, image/jpeg"
+                            onChange={changeHandler}
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label className='uploadLabel' htmlFor="image_thumnail_rectangle">Thumnail chữ nhật</label>
+                        <input
+                            className='inputFile'
+                            type="file"
+                            id='image_thumnail_rectangle'
+                            name="image_thumnail_rectangle"
+                            accept="image/png, image/jpeg"
+                            onChange={changeHandler}
+                            required
+                        />
+                    </div>
+                </div>
+                <input className='createSubmitBtn' type="submit" value="Tạo truyện" />
             </form>
         </div>
     );
