@@ -1,5 +1,5 @@
 .comics-wrapper {
-    background-color: #121212;
+    background-color: #f4f4f4;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -20,7 +20,6 @@
     min-height: 955px;
     left: 375px;
     position: absolute;
-    top: 125px;
     width: 1170px;
 }
 .header {
@@ -35,6 +34,7 @@
     height: 125px;
     min-width: 1920px;
     position: relative;
+
 }
 
 .overHeader {
@@ -73,6 +73,7 @@
     top: 18px;
     transition: all 0.2s ease;
     white-space: nowrap;
+
     :hover {
         color: #6c8af7;
     }
@@ -112,4 +113,15 @@
     padding: 15px;
     justify-content: center;
     display: flex;
+}
+div.overGroup a {
+    color: #f4f4f4;
+}
+div.images-banner{
+    justify-content: center;
+    display: flex;
+}
+div.images-banner img{
+    max-width: 1600px;
+    width: auto;
 }

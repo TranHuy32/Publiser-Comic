@@ -2,19 +2,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500&family=Roboto:wght@300;500&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap');:root {
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap');
+:root {
     --primary: #fe2c55;
     --black: #000;
-    --text-color: #ffffff;
+    --text-color: #121212;
     --white: #fff;
-    background-color: #121212;
+    background-color: #f4f4f4;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    color: #ffffff;
+    color: #121212;
 }
 button {
     background-color: #0dd5f8;

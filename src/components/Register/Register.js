@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 // import PropTypes from 'prop-types';
+import './Register.scss';
+
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -58,10 +60,9 @@ export default function Register() {
 
     return (
         <div className="register-wrapper">
-            <h1>Đăng ký</h1>
-            <button onClick={handleLogin}>Đăng nhập</button>
+            <h1 className="registerText">Đăng ký</h1>
             <form onSubmit={handleRegister}>
-                <label>
+                <label className="labelRegisterName">
                     <p>Name</p>
                     <input
                         type="text"
@@ -73,7 +74,7 @@ export default function Register() {
                         }
                     />
                 </label>
-                <label>
+                <label className="labelRegisterPublisherName">
                     <p>PublisherName</p>
                     <input
                         type="text"
@@ -85,7 +86,7 @@ export default function Register() {
                         }
                     />
                 </label>
-                <label>
+                <label className="labelRegisterPass">
                     <p>Password</p>
                     <input
                         type="password"
@@ -97,7 +98,7 @@ export default function Register() {
                         }
                     />
                 </label>
-                <label>
+                <label className="labelRegisterCornfirmPass">
                     <p>Confirm Password</p>
                     <input
                         type="password"
@@ -111,16 +112,31 @@ export default function Register() {
                 </label>
                 {isCreated && (
                     <>
-                        <h2>Tạo thành công</h2>
-                        <button onClick={handleLogin}> Đăng nhập </button>
+                        <h2 className="isCreated">Tạo thành công</h2>
                     </>
                 )}
-                {isExisted && <h2>Tài khoản đã tồn tại</h2>}
-                {!passwordsIsMatch && <h2>Password doesn't match</h2>}
-                {isEmpty && <h2>Hãy điền tất cả thông tin</h2>}
+                {isExisted && (
+                    <h2 className="isExisted">Tài khoản đã tồn tại</h2>
+                )}
+                {!passwordsIsMatch && (
+                    <h2 className="errPassCornfirmWrong">
+                        Password doesn't match
+                    </h2>
+                )}
+                {isEmpty && (
+                    <h2 className="errRegisterEmpty">Hãy điền tất cả thông tin</h2>
+                )}
 
                 <div>
-                    <button type="submit">Đăng ký</button>
+                    <button className="buttonRegister" type="submit">
+                        Đăng ký
+                    </button>
+                    <button
+                        className="buttonRegisterLogin"
+                        onClick={handleLogin}
+                    >
+                        Đăng nhập
+                    </button>
                 </div>
             </form>
         </div>

@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import { FireBaseContext } from '~/App';
-import './CreateChapter.scss'
+import './CreateChapter.scss';
 const CreateChapter = () => {
     const token = localStorage.getItem('token');
     const [isSucess, setIsSucess] = useState(false);
@@ -13,13 +13,12 @@ const CreateChapter = () => {
         images_content: [null],
     });
 
-    const fireBaseToken = useContext(FireBaseContext)
+    const fireBaseToken = useContext(FireBaseContext);
     const { id } = useParams();
 
-
     useEffect(() => {
-        setIsSucess(false)
-    }, [state])
+        setIsSucess(false);
+    }, [state]);
 
     const changeHandler = (e) => {
         if (e.target.name === 'image_thumnail') {
@@ -39,9 +38,8 @@ const CreateChapter = () => {
     };
 
     const backToComicHander = () => {
-        navigate(`/comic/${id}`)
-    }
-
+        navigate(`/comic/${id}`);
+    };
 
     const config = {
         headers: { Authorization: `Bearer ${token}` },
@@ -74,7 +72,7 @@ const CreateChapter = () => {
             .post('http://localhost:3000/chapters/createFile', formData, config)
             .then((response) => {
                 console.log(response);
-                setIsSucess(true)
+                setIsSucess(true);
                 console.log('1', fireBaseToken);
                 if (fireBaseToken) {
                     // fireBaseState.append('token', fireBaseToken);
@@ -83,13 +81,14 @@ const CreateChapter = () => {
                     const fireBaseState = {
                         token: fireBaseToken,
                         body: state.chapter_des,
-                        title: id
-                    }
-                    axios.post('http://localhost:3000/push-notification', fireBaseState, config)
+                        title: id,
+                    };
+                    axios.post(
+                        'http://localhost:3000/push-notification',
+                        fireBaseState,
+                        config,
+                    );
                 }
-
-
-
             })
             .catch((error) => {
                 console.log(error);
@@ -98,8 +97,8 @@ const CreateChapter = () => {
     const { chapter_des } = state;
 
     return (
-        <div className='wrapperCreateChapters'>
-            <form className='createChapterForm' onSubmit={submitHandler}>
+        <div className="wrapperCreateChapters">
+            <form className="createChapterForm" onSubmit={submitHandler}>
                 <div>
                     <label>Tên chapter:</label>
                     <input
@@ -111,13 +110,18 @@ const CreateChapter = () => {
                         required
                     />
                 </div>
-                <div className='uploadChapter'>
+                <div className="uploadChapter">
                     <div>
-                        <label htmlFor='image_thumnail' className='uploadChapterLabel'>Thumnail</label>
+                        <label
+                            htmlFor="image_thumnail"
+                            className="uploadChapterLabel"
+                        >
+                            Thumnail
+                        </label>
                         <input
-                            className='inputFileChapter'
+                            className="inputFileChapter"
                             type="file"
-                            id='image_thumnail'
+                            id="image_thumnail"
                             name="image_thumnail"
                             accept="image/png, image/jpeg"
                             onChange={changeHandler}
@@ -125,11 +129,16 @@ const CreateChapter = () => {
                         />
                     </div>
                     <div>
-                        <label htmlFor='images_content' className='uploadChapterLabel'>Truyện</label>
+                        <label
+                            htmlFor="images_content"
+                            className="uploadChapterLabel"
+                        >
+                            Truyện
+                        </label>
                         <input
-                            className='inputFileChapter'
+                            className="inputFileChapter"
                             type="file"
-                            id='images_content'
+                            id="images_content"
                             name="images_content"
                             accept="image/png, image/jpeg"
                             onChange={changeHandler}
@@ -138,14 +147,20 @@ const CreateChapter = () => {
                         />
                     </div>
                 </div>
-                <div className='listCreateChapterBtn'>
-                    <input className='createChapterSubmitBtn' type="submit" value="Đăng Chapter" />
-                    <input className='createChapterSubmitBtn' onClick={backToComicHander} value="Back to comic" />
+                <div className="listCreateChapterBtn">
+                    <input
+                        className="createChapterSubmitBtn"
+                        type="submit"
+                        value="Đăng Chapter"
+                    />
+                    <input
+                        className="createChapterSubmitBtn"
+                        onClick={backToComicHander}
+                        value="Back to comic"
+                    />
                 </div>
-
             </form>
             {isSucess && <h2>Đăng chapter thành công</h2>}
-
         </div>
     );
 };

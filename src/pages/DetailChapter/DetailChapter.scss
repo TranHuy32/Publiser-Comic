@@ -12,6 +12,7 @@ div.detailChapterWrapper > h2 {
 div.detailChapterWrapper ul {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 img {
     max-width: 100%;

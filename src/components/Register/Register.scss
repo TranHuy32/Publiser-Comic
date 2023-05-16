@@ -1,0 +1,144 @@
+.registerText {
+    position: absolute;
+    width: 400px;
+    height: 79px;
+    left: 490px;
+
+    // text-align: center;
+    top: 163px;
+    font-family: 'Oswald', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 3rem;
+    line-height: 79px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #121212;
+}
+
+.labelRegisterName,
+.labelRegisterPass,
+.labelRegisterCornfirmPass,
+.labelRegisterPublisherName {
+    > p {
+        position: absolute;
+        // width: 91px;
+        height: 23px;
+        left: 391px;
+        // top: 274px;
+        font-family: 'Roboto', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 23px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+
+        color: #121212;
+    }
+    > input {
+        padding-left: 3px;
+        box-sizing: border-box;
+        position: absolute;
+        width: 357px;
+        height: 25px;
+        left: 391px;
+        // top: 306px;
+        border-radius: 3px;
+        // border: 2px solid #ffffff;
+        box-shadow: 0 0 0 1px #ffffff;
+    }
+}
+
+.labelRegisterName {
+    > p {
+        top: 274px;
+    }
+    > input {
+        top: 306px;
+    }
+}
+.labelRegisterPublisherName {
+    > p {
+        top: 348px;
+    }
+    > input {
+        top: 380px;
+    }
+}
+.labelRegisterPass {
+    > p {
+        top: 422px;
+    }
+    > input {
+        top: 454px;
+    }
+}
+.labelRegisterCornfirmPass {
+    > p {
+        top: 496px;
+    }
+    > input {
+        top: 528px;
+    }
+}
+
+.buttonRegister,
+.buttonRegisterLogin {
+    height: 34px;
+    width: 143px;
+    border-radius: 10px;
+    top: 590px;
+    position: absolute;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    color: #000000;
+    border: 2px solid #ffffff;
+    &:hover {
+        background-color: #08acc9;
+    }
+
+    &:active {
+        background-color: #005c7a;
+        border-color: #005c7a;
+    }
+}
+.buttonRegister {
+    left: 418px;
+}
+.buttonRegisterLogin {
+    left: 578px;
+}
+
+.isCreated,
+.isExisted,
+.errRegisterEmpty,
+.errPassCornfirmWrong {
+    position: absolute;
+    width: 201px;
+    height: 19px;
+    top: 560px;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+
+    color: #121212;
+}
+.errRegisterEmpty {
+    left: 475px;
+}
+.errPassCornfirmWrong{
+    left: 480px;
+}
+.isCreated{
+    left: 515px;
+}
+.isExisted{
+    left: 495px;
+
+}
