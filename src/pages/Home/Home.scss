@@ -2,7 +2,8 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    padding-top: 60px;
+    // padding-top: 60px;
+    margin-top: 50px;
 }
 
 .comics-info {
@@ -88,4 +89,13 @@
 a[href]:hover {
     color: #7f8ddd;
     cursor: pointer;
+}
+h1.allComics {
+    margin-bottom: 80px;
+    font-size: 80px;
+    font-family: 'Titan One', cursive;
+    color: rgb(247, 0, 0);
+    -webkit-text-stroke: 1px #121212;
+    // -webkit-text-fill-color: transparent;
+    // display: inline-block; /* Add this line */
 }

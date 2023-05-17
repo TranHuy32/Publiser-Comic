@@ -8,6 +8,9 @@ div.detailComic > h2 {
     justify-content: center;
     font: bold 70px 'Kanit', sans-serif;
     margin-bottom: 30px;
+    // -webkit-text-stroke: 0.2px #ff0000;
+    text-shadow: -1px -1px 0 #ec681c, 1px -1px 0 #ec681c, -1px 1px 0 #ec681c,
+        1px 1px 0 #ec681c;
 }
 div.detailComic div.detailComicInfo {
     display: flex;
@@ -34,16 +37,15 @@ ul.listInfo {
     li {
         display: flex;
         p {
-            // color: #cfc6c6;  
+            // color: #cfc6c6;
             font: 22px 'Roboto', sans-serif;
             word-wrap: break-word;
-            max-width: 380px    ;
+            max-width: 380px;
         }
         p:first-child {
             min-width: 200px;
             margin: 0px 30px 20px 0px;
             margin-bottom: 100px;
-            
         }
         button {
             color: #121212;
@@ -94,9 +96,20 @@ div.detailComicDes {
         padding: 10px;
         margin: 10px;
         border-bottom: 1px dashed #ddd;
-        &:hover a {
+        > a.chapterNumber:hover {
             color: #2980b9;
             cursor: pointer;
+        }
+        > p.chapterUpdate {
+            // padding-right: 0px;
+            margin-left: auto;
+            margin-right: 5px;
+            text-decoration: underline;
+            color: #2980b9;
+            &:hover {
+                cursor: pointer;
+                color: #ff0000;
+            }
         }
     }
 }

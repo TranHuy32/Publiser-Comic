@@ -1,5 +1,5 @@
 .detailChapterWrapper {
-    width: 100%;
+    width: 75%;
     max-height: 100%;
     margin-top: 30px;
 }
@@ -11,7 +11,8 @@ div.detailChapterWrapper > h2 {
 }
 div.detailChapterWrapper ul {
     display: flex;
-    flex-wrap: wrap;
+    // flex-wrap: wrap;
+    flex-direction: column;
     justify-content: center;
 }
 img {

@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
-import { FireBaseContext } from '~/App';
+// import { FireBaseContext } from '~/App';
 import './CreateChapter.scss';
 const CreateChapter = () => {
     const token = localStorage.getItem('token');
@@ -13,8 +13,8 @@ const CreateChapter = () => {
         images_content: [null],
     });
 
-    const fireBaseToken = useContext(FireBaseContext);
-    const { id } = useParams();
+    // const fireBaseToken = useContext(FireBaseContext);
+    const { comic_id } = useParams();
 
     useEffect(() => {
         setIsSucess(false);
@@ -38,7 +38,7 @@ const CreateChapter = () => {
     };
 
     const backToComicHander = () => {
-        navigate(`/comic/${id}`);
+        navigate(`/comic/${comic_id}`);
     };
 
     const config = {
@@ -61,8 +61,7 @@ const CreateChapter = () => {
         //     return;
         // }
         const formData = new FormData();
-        // const fireBaseState = new FormData();
-        formData.append('comic_id', id);
+        formData.append('comic_id', comic_id);
         formData.append('chapter_des', state.chapter_des);
         formData.append('image_thumnail', state.image_thumnail);
         for (let i = 0; i < state.images_content.length; i++) {
@@ -73,22 +72,22 @@ const CreateChapter = () => {
             .then((response) => {
                 console.log(response);
                 setIsSucess(true);
-                console.log('1', fireBaseToken);
-                if (fireBaseToken) {
-                    // fireBaseState.append('token', fireBaseToken);
-                    // fireBaseState.append('title', id);
-                    // fireBaseState.append('body', state.chapter_des);
-                    const fireBaseState = {
-                        token: fireBaseToken,
-                        body: state.chapter_des,
-                        title: id,
-                    };
-                    axios.post(
-                        'http://localhost:3000/push-notification',
-                        fireBaseState,
-                        config,
-                    );
-                }
+                // console.log('1', fireBaseToken);
+                // if (fireBaseToken) {
+                //     // fireBaseState.append('token', fireBaseToken);
+                //     // fireBaseState.append('title', id);
+                //     // fireBaseState.append('body', state.chapter_des);
+                //     const fireBaseState = {
+                //         token: fireBaseToken,
+                //         body: state.chapter_des,
+                //         title: id,
+                //     };
+                //     axios.post(
+                //         'http://localhost:3000/push-notification',
+                //         fireBaseState,
+                //         config,
+                //     );
+                // }
             })
             .catch((error) => {
                 console.log(error);

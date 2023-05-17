@@ -12,6 +12,8 @@ import Register from '~/components/Register/Register';
 import DetailComic from '~/pages/DetailComic/DetailComic';
 import CreateChapter from '~/pages/CreateChapter/CreateChapter';
 import DetailChapter from '~/pages/DetailChapter/DetailChapter';
+import UpdateComic from '~/pages/UpdateComics/UpdateComics';
+import UpdateChapter from '~/pages/UpdateChapters/UpdateChapters';
 //Public routes
 const MainRoutes = () => {
     return (
@@ -72,11 +74,20 @@ const MainRoutes = () => {
                     exact
                 />
                 <Route
-                    path={'/comic/:id'}
+                    path={'/comic/:comic_id'}
+                    element={
+                        <DefaultLayout>
+                            <DetailComic />
+                        </DefaultLayout>
+                    }
+                    exact
+                />
+                <Route
+                    path={'/comic/update/:comic_id'}
                     element={
                         <RequireAuth loginPath={'/publisher/login'}>
                             <DefaultLayout>
-                                <DetailComic />
+                                <UpdateComic />
                             </DefaultLayout>
                         </RequireAuth>
                     }
@@ -85,7 +96,7 @@ const MainRoutes = () => {
 
                 {/* Route chapter  */}
                 <Route
-                    path={'/chapter/create/:id'}
+                    path={'/chapter/create/:comic_id'}
                     element={
                         <RequireAuth loginPath={'/publisher/login'}>
                             <DefaultLayout>
@@ -98,9 +109,18 @@ const MainRoutes = () => {
                 <Route
                     path={'/chapter/:id'}
                     element={
+                        <DefaultLayout>
+                            <DetailChapter />
+                        </DefaultLayout>
+                    }
+                    exact
+                />
+                <Route
+                    path={'/chapter/update/:chapter_id'}
+                    element={
                         <RequireAuth loginPath={'/publisher/login'}>
                             <DefaultLayout>
-                                <DetailChapter />
+                                <UpdateChapter />
                             </DefaultLayout>
                         </RequireAuth>
                     }

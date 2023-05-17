@@ -1,8 +1,7 @@
-import { useState, useNavigate, useEffect } from "react";
-import axios from "axios";
-import './Home.scss'
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import './Home.scss';
 export default function Home() {
-
     // const { isAuthenticated, getToken } = useAuthUser();
     // const [message, setMessage] = useState('');
 
@@ -48,18 +47,40 @@ export default function Home() {
     }, [token]);
 
     return (
-        <div className='wrapper'>
+        <div className="wrapper">
+            <h1 className="allComics">ALL COMICS</h1>
             {comics.map((comic, index) => (
                 <div className="comics-info" key={index}>
-                    <div className="comic-info" >
-                        <a href={`/comic/${comic._id}`} className="img-thumnail">
-                            <img src={comic.image_detail_path} title={comic.title} />
+                    <div className="comic-info">
+                        <a
+                            href={`/comic/${comic._id}`}
+                            className="img-thumnail"
+                        >
+                            <img
+                                alt={comic.title}
+                                src={comic.image_detail_path}
+                                title={comic.title}
+                            />
                         </a>
                         <div className="info">
-                            <a href={`/comic/${comic._id}`} className="title">{comic.title}</a>
-                            <a className="chapter">{'Chapter ' + comic.chapters.length + `: ${comic.chapters[comic.chapters.length - 1].chapter_des}`}</a>
-                            <a className="des">{comic.description}</a>
-                            <a className="views">{'Lượt xem: ' + comic.reads}</a>
+                            <a href={`/comic/${comic._id}`} className="title">
+                                {comic.title}
+                            </a>
+                            <a className="chapter">
+                                {'Chapter ' +
+                                    comic.chapters.length +
+                                    `: ${
+                                        comic.chapters[
+                                            comic.chapters.length - 1
+                                        ].chapter_des
+                                    }`}
+                            </a>
+                            <a href="#" className="des">
+                                {comic.description}
+                            </a>
+                            <a href="#" className="views">
+                                {'Lượt xem: ' + comic.reads}
+                            </a>
                         </div>
                     </div>
                 </div>

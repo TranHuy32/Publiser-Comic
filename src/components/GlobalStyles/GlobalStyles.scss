@@ -3,6 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500&family=Roboto:wght@300;500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Titan+One&display=swap');
 :root {
     --primary: #fe2c55;
     --black: #000;
@@ -49,4 +50,13 @@ textarea {
 }
 li {
     list-style-type: none;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.jc-spacearound {
+    display: flex;
+    justify-content: space-around;
 }
