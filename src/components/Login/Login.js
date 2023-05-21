@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import './Login.scss';
 
 export default function Login() {
+    const beURL = process.env.REACT_APP_BE_URL;
+
     const signIn = useSignIn();
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
@@ -23,7 +25,7 @@ export default function Login() {
         e.preventDefault();
         try {
             const response = await axios.post(
-                'http://localhost:3000/publisherauth/login',
+                `${beURL}publisherauth/login`,
                 formData,
             );
             const { accessToken, refreshToken } = response.data;

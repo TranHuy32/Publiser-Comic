@@ -4,6 +4,7 @@ import './Home.scss';
 export default function Home() {
     // const { isAuthenticated, getToken } = useAuthUser();
     // const [message, setMessage] = useState('');
+    const beURL = process.env.REACT_APP_BE_URL;
 
     // const fetchData = async () => {
     //     try {
@@ -35,7 +36,7 @@ export default function Home() {
 
     useEffect(() => {
         axios
-            .get(`http://localhost:3000/comics/home/all-comics`)
+            .get(`${beURL}comics/home/all-comics`)
             .then((response) => {
                 const data = response.data;
                 console.log(data);
@@ -75,12 +76,10 @@ export default function Home() {
                                         ].chapter_des
                                     }`}
                             </a>
-                            <a href="#" className="des">
-                                {comic.description}
-                            </a>
-                            <a href="#" className="views">
+                            <p className="des">{comic.description}</p>
+                            <p className="views">
                                 {'Lượt xem: ' + comic.reads}
-                            </a>
+                            </p>
                         </div>
                     </div>
                 </div>

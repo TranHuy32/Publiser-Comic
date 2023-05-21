@@ -16,6 +16,7 @@ export default function Register() {
     const [isExisted, setIsExisted] = useState(false);
     const [passwordsIsMatch, setPasswordsIsMatch] = useState(true);
     const [isEmpty, setIsEmpty] = useState(false);
+    const beURL = process.env.REACT_APP_BE_URL;
 
     useEffect(() => {
         setIsCreated(false);
@@ -41,7 +42,7 @@ export default function Register() {
             return;
         }
         axios
-            .post('http://localhost:3000/publisherauth/register', formData)
+            .post(`${beURL}publisherauth/register`, formData)
             .then((response) => {
                 console.log(response);
                 if (!response.data) {
@@ -124,7 +125,9 @@ export default function Register() {
                     </h2>
                 )}
                 {isEmpty && (
-                    <h2 className="errRegisterEmpty">Hãy điền tất cả thông tin</h2>
+                    <h2 className="errRegisterEmpty">
+                        Hãy điền tất cả thông tin
+                    </h2>
                 )}
 
                 <div>

@@ -6,6 +6,7 @@ import '../CreateChapter/CreateChapter.scss';
 const UpdateChapter = () => {
     const token = localStorage.getItem('token');
     const navigate = useNavigate();
+    const beURL = process.env.REACT_APP_BE_URL;
     const [state, setState] = useState({
         chapter_des: '',
         image_thumnail: null,
@@ -46,7 +47,7 @@ const UpdateChapter = () => {
         }
         axios
             .put(
-                `http://localhost:3000/chapters/update/${chapter_id}`,
+                `${beURL}chapters/update/${chapter_id}`,
                 formData,
                 config,
             )

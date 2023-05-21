@@ -4,6 +4,8 @@ import { useState, useEffect, useRef } from 'react';
 import './DetailChapter.scss'
 export default function DetailChapter() {
     const [chapter, setChapter] = useState();
+    const beURL = process.env.REACT_APP_BE_URL;
+
     // const navigate = useNavigate();
 
     const token = localStorage.getItem('token');
@@ -13,7 +15,7 @@ export default function DetailChapter() {
 
     useEffect(() => {
         axios
-            .get(`http://localhost:3000/chapters/${id}`, { Authorization: `Bearer ${token}` })
+            .get(`${beURL}chapters/${id}`, { Authorization: `Bearer ${token}` })
             .then((response) => {
                 const data = response.data;
                 setChapter(data);

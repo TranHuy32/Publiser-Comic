@@ -2,6 +2,7 @@ import './DefaultLayout.scss';
 import { useNavigate } from 'react-router-dom';
 import { useSignOut } from 'react-auth-kit';
 import { useEffect, useState, memo } from 'react';
+import Footer from '../Footer/Footer';
 
 function DefaultLayout({ children }) {
     const [isLogin, setIsLogin] = useState(true);
@@ -77,12 +78,15 @@ function DefaultLayout({ children }) {
                     </div>
                 </header>
                 <div className="images-banner">
-                    <img src={imagePath} alt='publish comic' />
+                    <img src={imagePath} alt="publish comic" />
                 </div>
                 {/* End header */}
                 <div className="comics-body">
                     <div className="bodyWrapper">{children}</div>
                 </div>
+                <footer>
+                    <Footer />
+                </footer>
             </div>
         </div>
     );

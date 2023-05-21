@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import './CreateComic.scss'
+import './CreateComic.scss';
 const CreateComic = () => {
     const token = localStorage.getItem('token');
     const navigate = useNavigate();
+    const beURL = process.env.REACT_APP_BE_URL;
+
     const [state, setState] = useState({
         description: '',
         title: '',
@@ -19,7 +21,6 @@ const CreateComic = () => {
 
     const changeHandler = (e) => {
         if (e.target.type === 'file') {
-            // Handle file input separately
             setState({ ...state, [e.target.name]: e.target.files[0] });
         } else if (e.target.name === 'categories') {
             const categoriesArray = e.target.value
@@ -33,22 +34,9 @@ const CreateComic = () => {
     const config = {
         headers: { Authorization: `Bearer ${token}` },
     };
+
     const submitHandler = (e) => {
         e.preventDefault();
-        // if (
-        //     !state.title ||
-        //     !state.description ||
-        //     !state.author ||
-        //     !state.year ||
-        //     !state.reads ||
-        //     state.categories.length === 0 ||
-        //     !state.image_detail ||
-        //     !state.image_thumnail_square ||
-        //     !state.image_thumnail_rectangle
-        // ) {
-        //     alert('Please fill in all fields');
-        //     return;
-        // }
         const formData = new FormData();
         formData.append('description', state.description);
         formData.append('title', state.title);
@@ -64,7 +52,7 @@ const CreateComic = () => {
         );
 
         axios
-            .post('http://localhost:3000/comics/create', formData, config)
+            .post(`${beURL}comics/create`, formData, config)
             .then((response) => {
                 console.log(response.data._id);
                 navigate(`/comic/${response.data._id}`);
@@ -76,8 +64,8 @@ const CreateComic = () => {
     const { description, title, author, year, categories } = state;
 
     return (
-        <div className='wrapperCreateComics'>
-            <form className='CreateComicForm' onSubmit={submitHandler}>
+        <div className="wrapperCreateComics">
+            <form className="CreateComicForm" onSubmit={submitHandler}>
                 <div>
                     <label>Tên truyện:</label>
                     <input
@@ -132,25 +120,32 @@ const CreateComic = () => {
                         required
                     />
                 </div>
-                <div className='upload'>
+                <div className="upload">
                     <div>
-                        <label className='uploadLabel' htmlFor="image_detail">Thumnail chính</label>
+                        <label className="uploadLabel" htmlFor="image_detail">
+                            Thumnail chính
+                        </label>
                         <input
-                            className='inputFile'
+                            className="inputFile"
                             type="file"
                             name="image_detail"
-                            id='image_detail'
+                            id="image_detail"
                             accept="image/png, image/jpeg"
                             onChange={changeHandler}
                             required
                         />
                     </div>
                     <div>
-                        <label className='uploadLabel' htmlFor="image_thumnail_square">Thumnail vuông</label>
+                        <label
+                            className="uploadLabel"
+                            htmlFor="image_thumnail_square"
+                        >
+                            Thumnail vuông
+                        </label>
                         <input
-                            className='inputFile'
+                            className="inputFile"
                             type="file"
-                            id='image_thumnail_square'
+                            id="image_thumnail_square"
                             name="image_thumnail_square"
                             accept="image/png, image/jpeg"
                             onChange={changeHandler}
@@ -158,11 +153,16 @@ const CreateComic = () => {
                         />
                     </div>
                     <div>
-                        <label className='uploadLabel' htmlFor="image_thumnail_rectangle">Thumnail chữ nhật</label>
+                        <label
+                            className="uploadLabel"
+                            htmlFor="image_thumnail_rectangle"
+                        >
+                            Thumnail chữ nhật
+                        </label>
                         <input
-                            className='inputFile'
+                            className="inputFile"
                             type="file"
-                            id='image_thumnail_rectangle'
+                            id="image_thumnail_rectangle"
                             name="image_thumnail_rectangle"
                             accept="image/png, image/jpeg"
                             onChange={changeHandler}
@@ -170,7 +170,11 @@ const CreateComic = () => {
                         />
                     </div>
                 </div>
-                <input className='createSubmitBtn' type="submit" value="Tạo truyện" />
+                <input
+                    className="createSubmitBtn"
+                    type="submit"
+                    value="Tạo truyện"
+                />
             </form>
         </div>
     );

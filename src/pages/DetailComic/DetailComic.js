@@ -7,6 +7,7 @@ export default function DetailComic() {
     const [comic, setComic] = useState();
     const navigate = useNavigate();
     const [isAuth, setIsAuth] = useState(false);
+    const beURL = process.env.REACT_APP_BE_URL;
 
     const token = localStorage.getItem('token');
     const { comic_id } = useParams();
@@ -21,14 +22,17 @@ export default function DetailComic() {
         navigate(`/chapter/update/${chapterId}`);
     };
     useEffect(() => {
+        if (token) {
+            setIsAuth(true);
+        } else {
+            setIsAuth(false);
+        }
         axios
-            .get(`http://localhost:3000/comics/${comic_id}`)
+            .get(`${beURL}comics/${comic_id}`)
             .then((response) => {
                 const data = response.data;
                 setComic(data);
-                if (token) {
-                    setIsAuth(true);
-                }
+
                 console.log(response);
             })
             .catch((error) => {

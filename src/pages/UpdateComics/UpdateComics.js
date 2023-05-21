@@ -6,12 +6,14 @@ import { useParams } from 'react-router-dom';
 const UpdateComic = () => {
     const token = localStorage.getItem('token');
     const navigate = useNavigate();
+    const beURL = process.env.REACT_APP_BE_URL;
+
     const [state, setState] = useState({
         description: '',
         title: '',
         author: '',
         year: '',
-        // reads: '',
+        reads: '',
         categories: [],
         image_detail: null,
         image_thumnail_square: null,
@@ -44,7 +46,7 @@ const UpdateComic = () => {
         formData.append('title', state.title);
         formData.append('author', state.author);
         formData.append('year', state.year);
-        // formData.append('reads', state.reads);
+        formData.append('reads', state.reads);
         formData.append('categories', state.categories);
         formData.append('image_detail', state.image_detail);
         formData.append('image_thumnail_square', state.image_thumnail_square);
@@ -54,11 +56,7 @@ const UpdateComic = () => {
         );
 
         axios
-            .put(
-                `http://localhost:3000/comics/update/${comic_id}`,
-                formData,
-                config,
-            )
+            .put(`${beURL}comics/update/${comic_id}`, formData, config)
             .then((response) => {
                 console.log(response.data._id);
                 navigate(`/comic/${response.data._id}`);
@@ -67,7 +65,7 @@ const UpdateComic = () => {
                 console.log(error);
             });
     };
-    const { description, title, author, year, categories } = state;
+    const { description, title, author, year, categories,reads } = state;
 
     return (
         <div className="wrapperCreateComics">
@@ -126,8 +124,8 @@ const UpdateComic = () => {
                     <input
                         type="number"
                         placeholder="Lượt xem"
-                        name="categories"
-                        value={categories.join(', ')}
+                        name="reads"
+                        value={reads}
                         onChange={changeHandler}
                     />
                 </div>

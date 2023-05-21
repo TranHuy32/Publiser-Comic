@@ -7,6 +7,7 @@ const CreateChapter = () => {
     const token = localStorage.getItem('token');
     const [isSucess, setIsSucess] = useState(false);
     const navigate = useNavigate();
+
     const [state, setState] = useState({
         chapter_des: '',
         image_thumnail: null,
@@ -15,6 +16,7 @@ const CreateChapter = () => {
 
     // const fireBaseToken = useContext(FireBaseContext);
     const { comic_id } = useParams();
+    const beURL = process.env.REACT_APP_BE_URL;
 
     useEffect(() => {
         setIsSucess(false);
@@ -22,7 +24,6 @@ const CreateChapter = () => {
 
     const changeHandler = (e) => {
         if (e.target.name === 'image_thumnail') {
-            // Handle file input separately
             setState({ ...state, [e.target.name]: e.target.files[0] });
         } else if (e.target.name === 'images_content') {
             const files = e.target.files;
@@ -34,7 +35,6 @@ const CreateChapter = () => {
         } else {
             setState({ ...state, [e.target.name]: e.target.value });
         }
-        console.log();
     };
 
     const backToComicHander = () => {
@@ -68,7 +68,7 @@ const CreateChapter = () => {
             formData.append('images_content', state.images_content[i]);
         }
         axios
-            .post('http://localhost:3000/chapters/createFile', formData, config)
+            .post(`${beURL}chapters/createFile`, formData, config)
             .then((response) => {
                 console.log(response);
                 setIsSucess(true);

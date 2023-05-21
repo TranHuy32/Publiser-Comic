@@ -15,7 +15,7 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    // box-sizing: border-box;
     color: #121212;
 }
 button {
@@ -59,4 +59,22 @@ li {
 .jc-spacearound {
     display: flex;
     justify-content: space-around;
+}
+
+.jc-between {
+    display: flex;
+    justify-content: space-between;
+}
+
+.jc-center {
+    display: flex;
+    justify-content: center;
+}
+.jc-evenly {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.mb-15{
+    margin-bottom: 15px;
 }
