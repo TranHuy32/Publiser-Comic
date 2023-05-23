@@ -24,17 +24,31 @@ const CreateChapter = () => {
 
     const changeHandler = (e) => {
         if (e.target.name === 'image_thumnail') {
-            setState({ ...state, [e.target.name]: e.target.files[0] });
+            const file = e.target.files[0];
+            if (file && isImageFile(file)) {
+                setState({ ...state, [e.target.name]: file });
+            } else {
+                alert('Vui lòng chọn một tệp ảnh có định dạng hợp lệ.');
+            }
         } else if (e.target.name === 'images_content') {
             const files = e.target.files;
             const imagesContentArray = [];
             for (let i = 0; i < files.length; i++) {
-                imagesContentArray.push(files[i]);
+                const file = files[i];
+                if (file && isImageFile(file)) {
+                    imagesContentArray.push(file);
+                } else {
+                    alert('Vui lòng chọn các tệp ảnh có định dạng hợp lệ.');
+                }
             }
             setState({ ...state, images_content: imagesContentArray });
         } else {
             setState({ ...state, [e.target.name]: e.target.value });
         }
+    };
+    const isImageFile = (file) => {
+        const acceptedFormats = ['image/png', 'image/jpeg', 'image/jpg'];
+        return acceptedFormats.includes(file.type);
     };
 
     const backToComicHander = () => {
@@ -122,7 +136,7 @@ const CreateChapter = () => {
                             type="file"
                             id="image_thumnail"
                             name="image_thumnail"
-                            accept="image/png, image/jpeg"
+                            accept="image/png,image/jpeg,image/jpg"
                             onChange={changeHandler}
                             required
                         />
@@ -139,7 +153,7 @@ const CreateChapter = () => {
                             type="file"
                             id="images_content"
                             name="images_content"
-                            accept="image/png, image/jpeg"
+                            accept="image/png,image/jpeg,image/jpg"
                             onChange={changeHandler}
                             multiple
                             required

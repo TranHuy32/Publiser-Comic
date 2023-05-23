@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import '../../pages/CreateComics/CreateComic.scss';
 const PushNotiTopic = () => {
     const token = localStorage.getItem('token');

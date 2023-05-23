@@ -18,19 +18,33 @@ const UpdateChapter = () => {
 
     const changeHandler = (e) => {
         if (e.target.name === 'image_thumnail') {
-            // Handle file input separately
-            setState({ ...state, [e.target.name]: e.target.files[0] });
-        } else if (e.target.name === 'images_content') {
-            const files = e.target.files;
-            const imagesContentArray = [];
-            for (let i = 0; i < files.length; i++) {
-                imagesContentArray.push(files[i]);
+            const file = e.target.files[0];
+            if (file && isImageFile(file)) {
+                setState({ ...state, [e.target.name]: e.target.files[0] });
+            } else {
+                alert('Vui lòng chọn một tệp ảnh có định dạng hợp lệ.');
             }
-            setState({ ...state, images_content: imagesContentArray });
+        } else if (e.target.name === 'images_content') {
+            const file = e.target.files[0];
+            if (file && isImageFile(file)) {
+                const files = e.target.files;
+                const imagesContentArray = [];
+                for (let i = 0; i < files.length; i++) {
+                    imagesContentArray.push(files[i]);
+                }
+                setState({ ...state, images_content: imagesContentArray });
+            } else {
+                alert('Vui lòng chọn một tệp ảnh có định dạng hợp lệ.');
+            }
         } else {
             setState({ ...state, [e.target.name]: e.target.value });
         }
         console.log();
+    };
+
+    const isImageFile = (file) => {
+        const acceptedFormats = ['image/png', 'image/jpeg', 'image/jpg'];
+        return acceptedFormats.includes(file.type);
     };
 
     const config = {
@@ -46,11 +60,7 @@ const UpdateChapter = () => {
             formData.append('images_content', state.images_content[i]);
         }
         axios
-            .put(
-                `${beURL}chapters/update/${chapter_id}`,
-                formData,
-                config,
-            )
+            .put(`${beURL}chapters/update/${chapter_id}`, formData, config)
             .then((response) => {
                 console.log(response);
                 navigate(`/comic/${response.data.comic_id}`);
@@ -87,7 +97,7 @@ const UpdateChapter = () => {
                             type="file"
                             id="image_thumnail"
                             name="image_thumnail"
-                            accept="image/png, image/jpeg"
+                            accept="image/png,image/jpeg,image/jpg"
                             onChange={changeHandler}
                         />
                     </div>
@@ -103,7 +113,7 @@ const UpdateChapter = () => {
                             type="file"
                             id="images_content"
                             name="images_content"
-                            accept="image/png, image/jpeg"
+                            accept="image/png,image/jpeg,image/jpg"
                             onChange={changeHandler}
                             multiple
                         />

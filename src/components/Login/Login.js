@@ -67,6 +67,7 @@ export default function Login() {
                 <label className="labelName">
                     <p>Tài khoản:</p>
                     <input
+                        required
                         type="text"
                         onChange={(e) =>
                             setFormData({
@@ -79,6 +80,7 @@ export default function Login() {
                 <label className="labelPass">
                     <p>Mật khẩu:</p>
                     <input
+                        required
                         type="password"
                         onChange={(e) =>
                             setFormData({

@@ -21,7 +21,12 @@ const CreateComic = () => {
 
     const changeHandler = (e) => {
         if (e.target.type === 'file') {
-            setState({ ...state, [e.target.name]: e.target.files[0] });
+            const file = e.target.files[0];
+            if (file && isImageFile(file)) {
+                setState({ ...state, [e.target.name]: e.target.files[0] });
+            } else {
+                alert('Vui lòng chọn một tệp ảnh có định dạng hợp lệ.');
+            }
         } else if (e.target.name === 'categories') {
             const categoriesArray = e.target.value
                 .split(',')
@@ -33,6 +38,11 @@ const CreateComic = () => {
     };
     const config = {
         headers: { Authorization: `Bearer ${token}` },
+    };
+
+    const isImageFile = (file) => {
+        const acceptedFormats = ['image/png', 'image/jpeg', 'image/jpg'];
+        return acceptedFormats.includes(file.type);
     };
 
     const submitHandler = (e) => {
@@ -130,7 +140,7 @@ const CreateComic = () => {
                             type="file"
                             name="image_detail"
                             id="image_detail"
-                            accept="image/png, image/jpeg"
+                            accept="image/png,image/jpeg,image/jpg"
                             onChange={changeHandler}
                             required
                         />
@@ -147,7 +157,7 @@ const CreateComic = () => {
                             type="file"
                             id="image_thumnail_square"
                             name="image_thumnail_square"
-                            accept="image/png, image/jpeg"
+                            accept="image/png,image/jpeg,image/jpg"
                             onChange={changeHandler}
                             required
                         />
@@ -164,7 +174,7 @@ const CreateComic = () => {
                             type="file"
                             id="image_thumnail_rectangle"
                             name="image_thumnail_rectangle"
-                            accept="image/png, image/jpeg"
+                            accept="image/png,image/jpeg,image/jpg"
                             onChange={changeHandler}
                             required
                         />

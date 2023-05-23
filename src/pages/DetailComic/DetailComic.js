@@ -32,13 +32,11 @@ export default function DetailComic() {
             .then((response) => {
                 const data = response.data;
                 setComic(data);
-
-                console.log(response);
             })
             .catch((error) => {
                 console.log(error);
             });
-    }, [comic_id, token]);
+    }, [comic_id, token, beURL]);
     if (comic) {
         return (
             <div className="detailComic">

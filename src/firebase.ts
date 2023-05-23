@@ -23,7 +23,7 @@ export const getMessagingToken = async () => {
         currentToken = await messaging.getToken({
             vapidKey: process.env.REACT_APP_FIREBASE_FCM_VAPID_KEY,
         });
-        console.log('FCM registration token', currentToken);
+        // console.log('FCM registration token', currentToken);
     } catch (error) {
         console.log('An error occurred while retrieving token. ', error);
     }

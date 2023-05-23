@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import './PublisherComics.scss';
 
 export default function PublisherComics() {
@@ -9,9 +9,11 @@ export default function PublisherComics() {
     // const navigate = useNavigate();
 
     const token = localStorage.getItem('token');
-    const config = {
-        headers: { Authorization: `Bearer ${token}` },
-    };
+    const getConfig = useMemo(() => {
+        return {
+            headers: { Authorization: `Bearer ${token}` },
+        };
+    }, [token]);
 
     // const handleUpChapter = () => {
     //     navigate(`/chapter/create/${comic._id}`);
@@ -19,16 +21,15 @@ export default function PublisherComics() {
 
     useEffect(() => {
         axios
-            .get(`${beURL}comics/publisher/comics`, config)
+            .get(`${beURL}comics/publisher/comics`, getConfig)
             .then((response) => {
                 const data = response.data;
-                console.log(data);
                 setComics(data);
             })
             .catch((error) => {
                 console.log(error);
             });
-    }, [token]);
+    }, [beURL, getConfig]);
     if (comics) {
         return (
             <div className="wrapper">
@@ -42,6 +43,7 @@ export default function PublisherComics() {
                                 <img
                                     src={comic.image_detail_path}
                                     title={comic.title}
+                                    alt={comic.title}
                                 />
                             </a>
                             <div className="publisher-info">

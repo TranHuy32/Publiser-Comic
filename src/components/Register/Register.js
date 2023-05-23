@@ -25,7 +25,6 @@ export default function Register() {
         setIsEmpty(false);
     }, [formData]);
 
-    console.log(formData);
     const handleRegister = (e) => {
         e.preventDefault();
         if (
@@ -44,14 +43,11 @@ export default function Register() {
         axios
             .post(`${beURL}publisherauth/register`, formData)
             .then((response) => {
-                console.log(response);
                 if (!response.data) {
                 } else if (response.data === 'PublisherName Existed!') {
                     setIsExisted(true);
-                    console.log('Existed');
                 } else {
                     setIsCreated(true);
-                    console.log('Created');
                 }
             });
     };
@@ -66,6 +62,7 @@ export default function Register() {
                 <label className="labelRegisterName">
                     <p>Name</p>
                     <input
+                        required
                         type="text"
                         onChange={(e) =>
                             setFormData({
@@ -78,6 +75,7 @@ export default function Register() {
                 <label className="labelRegisterPublisherName">
                     <p>PublisherName</p>
                     <input
+                        required
                         type="text"
                         onChange={(e) =>
                             setFormData({
@@ -90,6 +88,7 @@ export default function Register() {
                 <label className="labelRegisterPass">
                     <p>Password</p>
                     <input
+                        required
                         type="password"
                         onChange={(e) =>
                             setFormData({

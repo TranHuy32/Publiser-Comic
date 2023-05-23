@@ -39,13 +39,13 @@ export default function Home() {
             .get(`${beURL}comics/home/all-comics`)
             .then((response) => {
                 const data = response.data;
-                console.log(data);
                 setComics(data);
+                console.log(data);
             })
             .catch((error) => {
                 console.log(error);
             });
-    }, [token]);
+    }, [token, beURL]);
 
     return (
         <div className="wrapper">
@@ -67,7 +67,13 @@ export default function Home() {
                             <a href={`/comic/${comic._id}`} className="title">
                                 {comic.title}
                             </a>
-                            <a className="chapter">
+                            <a
+                                className="chapter"
+                                href={`/chapter/${
+                                    comic.chapters[comic.chapters.length - 1]
+                                        .chapter_id
+                                }`}
+                            >
                                 {'Chapter ' +
                                     comic.chapters.length +
                                     `: ${
