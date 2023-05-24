@@ -1,18 +1,31 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Select from 'react-select';
 import './CreateComic.scss';
+import Categories from './Categories';
+
 const CreateComic = () => {
     const token = localStorage.getItem('token');
     const navigate = useNavigate();
     const beURL = process.env.REACT_APP_BE_URL;
+
+    // const categoryOptions = [
+    //     { value: 'Hành động', label: 'Hành động' },
+    //     { value: 'Võ thuật', label: 'Võ thuật' },
+    //     { value: 'Hàn Quốc', label: 'Hàn Quốc' },
+    //     { value: 'Nhật Bản', label: 'Nhật Bản' },
+    // ];
+    const categoryOptions = Categories.map((category) => ({
+        value: category,
+        label: category,
+    }));
 
     const [state, setState] = useState({
         description: '',
         title: '',
         author: '',
         year: '',
-        // reads: '',
         categories: [],
         image_detail: null,
         image_thumnail_square: null,
@@ -36,6 +49,7 @@ const CreateComic = () => {
             setState({ ...state, [e.target.name]: e.target.value });
         }
     };
+
     const config = {
         headers: { Authorization: `Bearer ${token}` },
     };
@@ -52,7 +66,6 @@ const CreateComic = () => {
         formData.append('title', state.title);
         formData.append('author', state.author);
         formData.append('year', state.year);
-        // formData.append('reads', state.reads);
         formData.append('categories', state.categories);
         formData.append('image_detail', state.image_detail);
         formData.append('image_thumnail_square', state.image_thumnail_square);
@@ -71,7 +84,8 @@ const CreateComic = () => {
                 console.log(error);
             });
     };
-    const { description, title, author, year, categories } = state;
+
+    const { description, title, author, year } = state;
 
     return (
         <div className="wrapperCreateComics">
@@ -121,13 +135,18 @@ const CreateComic = () => {
                 </div>
                 <div>
                     <label>Thể loại:</label>
-                    <input
-                        type="text"
-                        placeholder="Thể loại"
-                        name="categories"
-                        value={categories.join(', ')}
-                        onChange={changeHandler}
-                        required
+                    <Select
+                        options={categoryOptions}
+                        isMulti
+                        onChange={(selectedOptions) => {
+                            const selectedCategories = selectedOptions.map(
+                                (option) => option.value,
+                            );
+                            setState({
+                                ...state,
+                                categories: selectedCategories,
+                            });
+                        }}
                     />
                 </div>
                 <div className="upload">

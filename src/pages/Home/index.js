@@ -59,7 +59,7 @@ export default function Home() {
                         >
                             <img
                                 alt={comic.title}
-                                src={comic.image_detail_path}
+                                src={comic.image_detail.path}
                                 title={comic.title}
                             />
                         </a>

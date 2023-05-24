@@ -44,7 +44,7 @@ export default function DetailComic() {
                 <div className="detailComicInfo">
                     <img
                         className="detailComicThumnail"
-                        src={comic.image_detail_path}
+                        src={comic.image_detail.path}
                         alt={comic.title}
                     />
                     <div className="detailComicText">

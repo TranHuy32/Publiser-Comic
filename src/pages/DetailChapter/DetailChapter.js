@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { useState, useEffect, useRef } from 'react';
-import './DetailChapter.scss'
+import { useState, useEffect } from 'react';
+import './DetailChapter.scss';
 export default function DetailChapter() {
     const [chapter, setChapter] = useState();
     const beURL = process.env.REACT_APP_BE_URL;
@@ -11,8 +11,6 @@ export default function DetailChapter() {
     const token = localStorage.getItem('token');
 
     const { id } = useParams();
-    // let chapter1 = useRef(chapter)
-
     useEffect(() => {
         axios
             .get(`${beURL}chapters/${id}`, { Authorization: `Bearer ${token}` })
@@ -23,16 +21,16 @@ export default function DetailChapter() {
             .catch((error) => {
                 console.log(error);
             });
-    }, [id, token]);
+    }, [id, token, beURL]);
     if (chapter) {
         return (
-            <div className='detailChapterWrapper'>
+            <div className="detailChapterWrapper">
                 <h2>{chapter.chapter_des}</h2>
 
                 <ul>
                     {chapter.content.map((imageContent, index) => (
                         <li key={index}>
-                            <img src={imageContent} alt={chapter.title} />
+                            <img src={imageContent.path} alt={chapter.title} />
                         </li>
                     ))}
                 </ul>

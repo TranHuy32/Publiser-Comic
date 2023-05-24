@@ -15,6 +15,7 @@ import DetailChapter from '~/pages/DetailChapter/DetailChapter';
 import UpdateComic from '~/pages/UpdateComics/UpdateComics';
 import UpdateChapter from '~/pages/UpdateChapters/UpdateChapters';
 import PushNotiTopic from '~/components/PushNotiTopic/PushNotiTopic';
+import AutoPublish from '~/components/AutoPublish/AutoPublish';
 //Public routes
 const MainRoutes = () => {
     return (
@@ -127,7 +128,17 @@ const MainRoutes = () => {
                     }
                     exact
                 />
-
+                <Route
+                    path={'/chapter/autoPublish'}
+                    element={
+                        <RequireAuth loginPath={'/publisher/login'}>
+                            <DefaultLayout>
+                                <AutoPublish />
+                            </DefaultLayout>
+                        </RequireAuth>
+                    }
+                    exact
+                />
                 {/* Firebase */}
                 <Route
                     path={'/firebase/push_noti_topic'}
