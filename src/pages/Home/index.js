@@ -40,7 +40,6 @@ export default function Home() {
             .then((response) => {
                 const data = response.data;
                 setComics(data);
-                console.log(data);
             })
             .catch((error) => {
                 console.log(error);

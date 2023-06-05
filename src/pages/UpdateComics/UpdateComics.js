@@ -21,7 +21,6 @@ const UpdateComic = () => {
     });
 
     const { comic_id } = useParams();
-    console.log(comic_id);
     const changeHandler = (e) => {
         if (e.target.type === 'file') {
             const file = e.target.files[0];
@@ -67,7 +66,6 @@ const UpdateComic = () => {
         axios
             .put(`${beURL}comics/update/${comic_id}`, formData, config)
             .then((response) => {
-                console.log(response.data._id);
                 navigate(`/comic/${response.data._id}`);
             })
             .catch((error) => {
