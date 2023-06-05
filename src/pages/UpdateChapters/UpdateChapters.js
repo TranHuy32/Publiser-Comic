@@ -62,7 +62,6 @@ const UpdateChapter = () => {
         axios
             .put(`${beURL}chapters/update/${chapter_id}`, formData, config)
             .then((response) => {
-                console.log(response);
                 navigate(`/comic/${response.data.comic_id}`);
             })
             .catch((error) => {

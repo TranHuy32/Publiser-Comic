@@ -60,20 +60,6 @@ const CreateChapter = () => {
     };
     const submitHandler = (e) => {
         e.preventDefault();
-        // if (
-        //     !state.title ||
-        //     !state.description ||
-        //     !state.author ||
-        //     !state.year ||
-        //     !state.reads ||
-        //     state.categories.length === 0 ||
-        //     !state.image_detail ||
-        //     !state.image_thumnail_square ||
-        //     !state.image_thumnail_rectangle
-        // ) {
-        //     alert('Please fill in all fields');
-        //     return;
-        // }
         const formData = new FormData();
         formData.append('comic_id', comic_id);
         formData.append('chapter_des', state.chapter_des);
@@ -84,7 +70,6 @@ const CreateChapter = () => {
         axios
             .post(`${beURL}chapters/createFile`, formData, config)
             .then((response) => {
-                console.log(response);
                 setIsSucess(true);
                 // console.log('1', fireBaseToken);
                 // if (fireBaseToken) {
@@ -164,12 +149,12 @@ const CreateChapter = () => {
                     <input
                         className="createChapterSubmitBtn"
                         type="submit"
-                        value="Đăng Chapter"
+                        defaultValue="Đăng Chapter"
                     />
                     <input
                         className="createChapterSubmitBtn"
                         onClick={backToComicHander}
-                        value="Back to comic"
+                        defaultValue="Back to comic"
                     />
                 </div>
             </form>
