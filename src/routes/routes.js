@@ -1,8 +1,5 @@
-// import LoginPages from '~/pages/Login';
 import Home from '~/pages/Home';
 import PublisherComics from '~/pages/PublisherComics';
-// import { HeaderOnly } from '~/Components/Layout';
-// import PostForm from '~/pages/CreateComics/PostForm';
 import Login from '~/components/Login/Login';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { DefaultLayout } from '~/components/Layout';
@@ -15,7 +12,6 @@ import DetailChapter from '~/pages/DetailChapter/DetailChapter';
 import UpdateComic from '~/pages/UpdateComics/UpdateComics';
 import UpdateChapter from '~/pages/UpdateChapters/UpdateChapters';
 import PushNotiTopic from '~/components/PushNotiTopic/PushNotiTopic';
-import AutoPublish from '~/components/AutoPublish/AutoPublish';
 //Public routes
 const MainRoutes = () => {
     return (
@@ -123,17 +119,6 @@ const MainRoutes = () => {
                         <RequireAuth loginPath={'/publisher/login'}>
                             <DefaultLayout>
                                 <UpdateChapter />
-                            </DefaultLayout>
-                        </RequireAuth>
-                    }
-                    exact
-                />
-                <Route
-                    path={'/chapter/autoPublish'}
-                    element={
-                        <RequireAuth loginPath={'/publisher/login'}>
-                            <DefaultLayout>
-                                <AutoPublish />
                             </DefaultLayout>
                         </RequireAuth>
                     }

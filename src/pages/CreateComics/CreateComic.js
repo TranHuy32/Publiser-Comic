@@ -77,7 +77,6 @@ const CreateComic = () => {
         axios
             .post(`${beURL}comics/create`, formData, config)
             .then((response) => {
-                console.log(response.data._id);
                 navigate(`/comic/${response.data._id}`);
             })
             .catch((error) => {
