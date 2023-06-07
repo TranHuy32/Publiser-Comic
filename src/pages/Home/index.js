@@ -36,7 +36,7 @@ export default function Home() {
 
     useEffect(() => {
         axios
-            .get(`${beURL}comics/home/all-comics`)
+            .get(`${beURL}comics/home/all-comics?limit=15`)
             .then((response) => {
                 const data = response.data;
                 setComics(data);
