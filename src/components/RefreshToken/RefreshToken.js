@@ -13,7 +13,7 @@ const refreshApi = createRefresh({
         try {
             const response = await axios.post(
                 `${beURL}publisherauth/refresh`,
-                { refreshToken: refreshToken },
+                { 'refreshToken': refreshToken },
                 {
                     headers: { Authorization: `Bearer ${authToken}` },
                 },
