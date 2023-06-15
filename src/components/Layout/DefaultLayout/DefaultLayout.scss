@@ -59,7 +59,8 @@
 .myComic,
 .home,
 .login,
-.register {
+.register,
+.categories {
     cursor: pointer;
     font-family: 'Roboto', Helvetica;
     font-size: 15px;
@@ -95,7 +96,9 @@
 .register {
     left: 1100px;
 }
-
+.categories{
+    left: 440px;
+}
 .textLogo {
     left: 92px;
     font-family: 'Pacifico', cursive;

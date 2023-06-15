@@ -47,7 +47,10 @@ function DefaultLayout({ children }) {
                                         </a>
                                     </div>
                                     <div className="upComic">
-                                        <a href="/comic/create"> Đăng truyện</a>
+                                        <a href="/comic/create">Đăng truyện</a>
+                                    </div>
+                                    <div className="categories">
+                                        <a href="/categories/all">Thể loại</a>
                                     </div>
                                     {!isLogin && (
                                         <div>
