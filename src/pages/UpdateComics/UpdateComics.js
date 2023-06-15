@@ -116,7 +116,7 @@ const UpdateComic = () => {
                         onChange={changeHandler}
                     />
                 </div>
-                <div>
+                {/* <div>
                     <label>Thể loại (chỉnh sửa):</label>
                     <input
                         type="text"
@@ -125,7 +125,7 @@ const UpdateComic = () => {
                         value={categories.join(', ')}
                         onChange={changeHandler}
                     />
-                </div>
+                </div> */}
                 <div>
                     <label>Lượt xem (chỉnh sửa):</label>
                     <input
