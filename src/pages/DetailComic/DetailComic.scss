@@ -103,6 +103,16 @@ div.detailComicDes {
         > p.chapterUpdate {
             // padding-right: 0px;
             margin-left: auto;
+            margin-right: 10px;
+            text-decoration: underline;
+            color: #2980b9;
+            &:hover {
+                cursor: pointer;
+                color: #ff0000;
+            }
+           
+        }
+        > p.chapterDelete {
             margin-right: 5px;
             text-decoration: underline;
             color: #2980b9;
