@@ -9,7 +9,9 @@ export default function Categories() {
 
     const beURL = process.env.REACT_APP_BE_URL;
     const token = localStorage.getItem('token');
-
+    const config = {
+        headers: { Authorization: `Bearer ${token}` },
+    };
     useEffect(() => {
         if (token) {
             setIsAuth(true);
@@ -20,7 +22,6 @@ export default function Categories() {
             .get(`${beURL}category/all`)
             .then((response) => {
                 const data = response.data;
-                console.log(data);
                 setCategories(data)
             })
             .catch((error) => {
@@ -31,11 +32,10 @@ export default function Categories() {
         const confirmDelete = window.confirm("Bạn có muốn xóa thể loại này không?");
         if (confirmDelete) {
             axios
-                .delete(`${beURL}category/delete/${category_id}`)
+                .delete(`${beURL}category/delete/${category_id}`, config)
                 .then((response) => {
-                    const data = response.data;
-                    console.log(data);
-                    setIsDelete(!isDelete);
+                    if (response.data === "Successful delete")
+                        setIsDelete(!isDelete);
                 })
                 .catch((error) => {
                     console.log(error);

@@ -9,7 +9,6 @@ export default function DetailComic() {
     const navigate = useNavigate();
     const [isAuth, setIsAuth] = useState(false);
     const beURL = process.env.REACT_APP_BE_URL;
-
     const token = localStorage.getItem('token');
     const { comic_id } = useParams();
 
@@ -22,23 +21,8 @@ export default function DetailComic() {
     const handleUpdateChapter = (chapterId) => {
         navigate(`/chapter/update/${chapterId}`);
     };
-    const handleDeleteChapter = (chapterId) => {
-        console.log(chapterId);
-        const confirmDelete = window.confirm("Bạn có muốn xóa chapter này không?");
-        if (confirmDelete) {
-            axios
-                .delete(`${beURL}chapters/delete/${chapterId}`)
-                .then((response) => {
-                    if(response.data === "Successful delete"){
-                        setIsDelete(!isDelete);
-                    }else{
-                        window.alert("Xóa không thành công. Phải để lại ít nhất 1 chapter!!!")
-                    }
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
-        }
+    const config = {
+        headers: { Authorization: `Bearer ${token}` },
     };
     useEffect(() => {
         if (token) {
@@ -56,6 +40,24 @@ export default function DetailComic() {
                 console.log(error);
             });
     }, [comic_id, token, beURL, isDelete]);
+    const handleDeleteChapter = (chapterId) => {
+        console.log(chapterId);
+        const confirmDelete = window.confirm("Bạn có muốn xóa chapter này không?");
+        if (confirmDelete) {
+            axios
+                .delete(`${beURL}chapters/delete/${chapterId}`, config)
+                .then((response) => {
+                    if (response.data === "Successful delete") {
+                        setIsDelete(!isDelete);
+                    } else {
+                        window.alert("Xóa không thành công. Phải để lại ít nhất 1 chapter!!!")
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
+    };
     if (comic) {
         return (
             <div className="detailComic">

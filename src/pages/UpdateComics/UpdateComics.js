@@ -72,7 +72,7 @@ const UpdateComic = () => {
                 console.log(error);
             });
     };
-    const { description, title, author, year, categories, reads } = state;
+    const { description, title, author, year, reads } = state;
 
     return (
         <div className="wrapperCreateComics">
