@@ -5,10 +5,10 @@ import './DetailComic.scss';
 
 export default function DetailComic() {
     const [comic, setComic] = useState();
+    const [isDelete, setIsDelete] = useState(false);
     const navigate = useNavigate();
     const [isAuth, setIsAuth] = useState(false);
     const beURL = process.env.REACT_APP_BE_URL;
-
     const token = localStorage.getItem('token');
     const { comic_id } = useParams();
 
@@ -20,6 +20,9 @@ export default function DetailComic() {
     };
     const handleUpdateChapter = (chapterId) => {
         navigate(`/chapter/update/${chapterId}`);
+    };
+    const config = {
+        headers: { Authorization: `Bearer ${token}` },
     };
     useEffect(() => {
         if (token) {
@@ -36,7 +39,25 @@ export default function DetailComic() {
             .catch((error) => {
                 console.log(error);
             });
-    }, [comic_id, token, beURL]);
+    }, [comic_id, token, beURL, isDelete]);
+    const handleDeleteChapter = (chapterId) => {
+        console.log(chapterId);
+        const confirmDelete = window.confirm("Bạn có muốn xóa chapter này không?");
+        if (confirmDelete) {
+            axios
+                .delete(`${beURL}chapters/delete/${chapterId}`, config)
+                .then((response) => {
+                    if (response.data === "Successful delete") {
+                        setIsDelete(!isDelete);
+                    } else {
+                        window.alert("Xóa không thành công. Phải để lại ít nhất 1 chapter!!!")
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
+    };
     if (comic) {
         return (
             <div className="detailComic">
@@ -90,20 +111,33 @@ export default function DetailComic() {
                                 <a
                                     className="chapterNumber"
                                     href={`/chapter/${chapter.chapter_id}`}
-                                >{`Chapter ${index + 1}: ${
-                                    chapter.chapter_des
-                                }`}</a>
+                                >{`Chapter ${index + 1}: ${chapter.chapter_des
+                                    }`}</a>
                                 {isAuth && (
-                                    <p
-                                        className="chapterUpdate"
-                                        onClick={() =>
-                                            handleUpdateChapter(
-                                                chapter.chapter_id,
-                                            )
-                                        }
-                                    >
-                                        Chỉnh sửa
-                                    </p>
+                                    <>
+                                        <p
+                                            className="chapterUpdate"
+                                            onClick={() =>
+                                                handleUpdateChapter(
+                                                    chapter.chapter_id,
+                                                )
+                                            }
+                                        >
+                                            Chỉnh sửa
+                                        </p>
+                                        <p
+                                            className="chapterDelete"
+                                            onClick={() =>
+                                                handleDeleteChapter(
+                                                    chapter.chapter_id,
+                                                )
+                                            }
+                                        >
+                                            Xóa
+                                        </p>
+                                    </>
+
+
                                 )}
                             </li>
                         ))}

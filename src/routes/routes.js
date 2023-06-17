@@ -12,6 +12,7 @@ import DetailChapter from '~/pages/DetailChapter/DetailChapter';
 import UpdateComic from '~/pages/UpdateComics/UpdateComics';
 import UpdateChapter from '~/pages/UpdateChapters/UpdateChapters';
 import PushNotiTopic from '~/components/PushNotiTopic/PushNotiTopic';
+import Categories from '~/pages/Categories/Categories';
 //Public routes
 const MainRoutes = () => {
     return (
@@ -121,6 +122,16 @@ const MainRoutes = () => {
                                 <UpdateChapter />
                             </DefaultLayout>
                         </RequireAuth>
+                    }
+                    exact
+                />
+                {/* Categories */}
+                <Route
+                    path={'/categories/all'}
+                    element={
+                            <DefaultLayout>
+                                <Categories />
+                            </DefaultLayout>
                     }
                     exact
                 />
