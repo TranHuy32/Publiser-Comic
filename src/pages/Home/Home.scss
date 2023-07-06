@@ -1,37 +1,40 @@
 .wrapper {
-    display: flex;
-    flex-wrap: wrap;
+    // display: flex;
+    // flex-wrap: wrap;
     justify-content: center;
     // padding-top: 60px;
     margin-top: 50px;
+    .comics-info {
+        position: relative;
+        margin: 0 auto;
+        width: 55vw;
+        height: 251px;
+        margin-bottom: 25px;
+        display: flex;
+        // margin-left: 60px;
+    }
 }
 
-.comics-info {
-    position: relative;
-    width: 896px;
-    height: 251px;
-    margin-bottom: 25px;
-    display: flex;
-    margin-left: 60px;
-}
 .comic-info {
-    position: absolute;
+    // position: absolute;
+    width: 100%;
     display: flex;
+    justify-content: space-between;
 }
 .comic-info:first-child {
     padding-top: 0;
 }
 .img-thumnail {
     position: relative;
-    width: 192px;
-    height: 251px;
+    width: 200px;
+    height: 250px;
     display: inline-block;
     text-align: center;
     vertical-align: middle;
     display: flex;
     align-items: center;
     overflow: hidden;
-    margin-left: 40px;
+    // margin-left: 40px;
     img:hover {
         transform: scale(1.05);
     }
@@ -49,7 +52,8 @@
 }
 
 .info {
-    margin-left: 60px;
+    // margin-left: 60px;
+    width: 40vw;
     display: flex;
     flex-direction: column;
 }
@@ -67,7 +71,7 @@
 .des {
     font: 13px 'Roboto', sans-serif;
     display: inline-block;
-    height: 70px;
+    min-height: 70px;
     max-width: 656px;
     margin-bottom: 15px;
     overflow: hidden;
