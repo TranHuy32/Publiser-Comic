@@ -92,6 +92,8 @@ function DefaultLayout({ children }) {
                 {/* End header */}
                 <div className="comics-body">
                     <div className="bodyWrapper">{children}</div>
+
+                    
                 </div>
                 <footer>
                     <Footer />
