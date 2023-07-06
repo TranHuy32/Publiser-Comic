@@ -1,27 +1,27 @@
+.login-wrapper{
+    width: 100%;
+    height: 100%;
+}
 .loginText {
-    position: absolute;
-    width: 400px;
+    width: fit-content;
+    margin-left: calc(45% - 50px);
     height: 79px;
-    left: 468px;
-    top: 163px;
     font-family: 'Oswald', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 3rem;
     line-height: 79px;
-    display: flex;
-    align-items: center;
-    text-align: center;
     color: #121212;
+    margin-bottom: 5%;
 }
 
 .labelName {
+
     > p {
-        position: absolute;
+        margin-left: 34%;
+        width: 50%;
         width: 91px;
         height: 23px;
-        left: 391px;
-        top: 274px;
         font-family: 'Roboto', sans-serif;
         font-style: normal;
         font-weight: 400;
@@ -34,13 +34,13 @@
         color: #121212;
     }
     > input {
+        margin-left: 34%;
+        width: 50%;
         padding-left: 3px;
         box-sizing: border-box;
-        position: absolute;
+        // position: absolute;
         width: 357px;
         height: 25px;
-        left: 391px;
-        top: 306px;
         border-radius: 3px;
         background: #ee7575;
         // border: 2px solid #ffffff;
@@ -50,12 +50,12 @@
 
 .labelPass {
     > p {
+        margin-left: 34%;
+        width: 50%;
         padding-left: 3px;
-        position: absolute;
+        // position: absolute;
         width: 91px;
         height: 23px;
-        left: 391px;
-        top: 363px;
 
         font-family: 'Roboto', sans-serif;
         font-style: normal;
@@ -69,9 +69,11 @@
         color: #121212;
     }
     > input {
+        margin-left: 34%;
+        width: 50%;
         padding-left: 3px;
         box-sizing: border-box;
-        position: absolute;
+        // position: absolute;
         width: 357px;
         height: 25px;
         left: 391px;
@@ -84,12 +86,12 @@
 }
 
 .buttonLogin {
+    margin-left: 43%;
+    margin-top: 10%;
     height: 34px;
     width: 143px;
     border-radius: 10px;
-    left: 498px;
-    top: 495px;
-    position: absolute;
+    // position: absolute;
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
     font-weight: 500;

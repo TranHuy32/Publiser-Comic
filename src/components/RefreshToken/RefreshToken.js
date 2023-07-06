@@ -10,10 +10,11 @@ const refreshApi = createRefresh({
         refreshTokenExpiresAt,
         authUserState,
     }) => {
+        console.log(refreshToken);
         try {
             const response = await axios.post(
                 `${beURL}publisherauth/refresh`,
-                { refreshToken: refreshToken },
+                { 'refreshToken': refreshToken },
                 {
                     headers: { Authorization: `Bearer ${authToken}` },
                 },
@@ -22,7 +23,7 @@ const refreshApi = createRefresh({
                 isSuccess: true,
                 newAuthToken: response.data.accessToken,
                 newRefreshToken: response.data.refreshToken,
-                newAuthTokenExpireIn: 10,
+                newAuthTokenExpireIn: 20,
                 newRefreshTokenExpiresIn: 60,
             };
         } catch (error) {
