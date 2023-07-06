@@ -2,37 +2,12 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Home.scss';
 export default function Home() {
-    // const { isAuthenticated, getToken } = useAuthUser();
-    // const [message, setMessage] = useState('');
+
     const beURL = process.env.REACT_APP_BE_URL;
 
-    // const fetchData = async () => {
-    //     try {
-    //         const response = await axios.get('http://localhost:3000/home', {
-    //             headers: {
-    //                 Authorization: `Bearer ${getToken()}`,
-    //             },
-    //         });
-    //         setMessage(response.data.message);
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // };
-
-    // useEffect(() => {
-    //     if (isAuthenticated()) {
-    //         fetchData();
-    //     }
-    // }, [isAuthenticated, getToken]);
-
     const [comics, setComics] = useState([]);
-    // const navigate = useNavigate();
 
     const token = localStorage.getItem('token');
-
-    // const handleUpChapter = () => {
-    //     navigate(`/comics/${comic._id}`);
-    // };
 
     useEffect(() => {
         axios
