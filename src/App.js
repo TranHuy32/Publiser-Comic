@@ -21,7 +21,7 @@ function App() {
 
     return (
         <AuthProvider
-            authType={'localstorage'}
+            authType={'sessionstorage'}
             authName={'token'}
             refresh={refreshApi}
         >
