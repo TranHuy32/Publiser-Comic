@@ -40,10 +40,10 @@ export default function Login() {
             signIn({
                 token: accessToken,
                 tokenType: 'Bearer',
-                expiresIn: 10,
+                expiresIn: 20,
                 authState: { publisherName: formData.publisherName },
                 refreshToken: refreshToken,
-                refreshTokenExpireIn: 10,
+                refreshTokenExpireIn: 60,
             });
             navigate('/');
             window.location.reload();
