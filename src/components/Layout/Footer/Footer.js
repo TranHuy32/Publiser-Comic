@@ -7,9 +7,9 @@ export default function Footer() {
                 <h1 className="logoFooter">Làng Truyện</h1>
             </a>
             <div className="copyright">
-                <p>Comics có rất nhiều comics hay.....</p>
+                <p>Làng Truyện có rất nhiều truyện hay.....</p>
                 <br />
-                <p>Copyright © 2023 Comics.com</p>
+                <p>Copyright © 2023 Langtruyen.com</p>
             </div>
         </div>
     );
