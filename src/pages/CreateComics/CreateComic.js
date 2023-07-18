@@ -20,6 +20,7 @@ const CreateComic = () => {
         value: category,
         label: category,
     }));
+    const [isPushing, setIsPushing] = useState(false);
 
     const [state, setState] = useState({
         description: '',
@@ -60,6 +61,7 @@ const CreateComic = () => {
     };
 
     const submitHandler = (e) => {
+        setIsPushing(true);
         e.preventDefault();
         const formData = new FormData();
         formData.append('description', state.description);
@@ -77,6 +79,7 @@ const CreateComic = () => {
         axios
             .post(`${beURL}comics/create`, formData, config)
             .then((response) => {
+                setIsPushing(false);
                 navigate(`/comic/${response.data._id}`);
             })
             .catch((error) => {
@@ -198,11 +201,16 @@ const CreateComic = () => {
                         />
                     </div>
                 </div>
-                <input
-                    className="createSubmitBtn"
-                    type="submit"
-                    value="Tạo truyện"
-                />
+                {!isPushing && (
+                    <input
+                        className="createSubmitBtn"
+                        type="submit"
+                        value="Tạo truyện"
+                    />
+                )}
+                {isPushing && (
+                    <input className="isPussingBtn" value="Đang tải ..." />
+                )}
             </form>
         </div>
     );

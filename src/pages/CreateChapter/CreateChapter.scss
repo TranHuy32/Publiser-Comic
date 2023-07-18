@@ -77,6 +77,15 @@ input.createChapterSubmitBtn {
         background-color: rgb(20, 171, 231);
     }
 }
+input.isPussingChapterBtn {
+    font: 18px 'Roboto', sans-serif;
+    background-color: rgb(20, 171, 231);
+    height: 40px;
+    width: 200px;
+    padding-right: 10px;
+    text-align: center;
+    cursor: default;
+}
 div.wrapperCreateChapters h2 {
     text-align: center;
     margin-top: 30px;

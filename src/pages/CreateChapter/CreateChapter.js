@@ -13,6 +13,7 @@ const CreateChapter = () => {
         image_thumnail: null,
         images_content: [null],
     });
+    const [isPushing, setIsPushing] = useState(false);
 
     // const fireBaseToken = useContext(FireBaseContext);
     const { comic_id } = useParams();
@@ -59,6 +60,7 @@ const CreateChapter = () => {
         headers: { Authorization: `Bearer ${token}` },
     };
     const submitHandler = (e) => {
+        setIsPushing(true);
         e.preventDefault();
         const formData = new FormData();
         formData.append('comic_id', comic_id);
@@ -70,6 +72,7 @@ const CreateChapter = () => {
         axios
             .post(`${beURL}chapters/createFile`, formData, config)
             .then((response) => {
+                setIsPushing(false);
                 setIsSucess(true);
                 // console.log('1', fireBaseToken);
                 // if (fireBaseToken) {
@@ -114,7 +117,7 @@ const CreateChapter = () => {
                             htmlFor="image_thumnail"
                             className="uploadChapterLabel"
                         >
-                            Thumnail
+                            Thumbnail
                         </label>
                         <input
                             className="inputFileChapter"
@@ -146,11 +149,19 @@ const CreateChapter = () => {
                     </div>
                 </div>
                 <div className="listCreateChapterBtn">
-                    <input
-                        className="createChapterSubmitBtn"
-                        type="submit"
-                        defaultValue="Đăng Chapter"
-                    />
+                    {!isPushing && (
+                        <input
+                            className="createChapterSubmitBtn"
+                            type="submit"
+                            defaultValue="Đăng Chapter"
+                        />
+                    )}
+                    {isPushing && (
+                        <input
+                            className="isPussingChapterBtn"
+                            defaultValue="Loading ..."
+                        />
+                    )}
                     <input
                         className="createChapterSubmitBtn"
                         onClick={backToComicHander}
