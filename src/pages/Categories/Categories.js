@@ -49,7 +49,7 @@ export default function Categories() {
     } else {
         return (
             <div>
-                <h1 className='allComics'>All Categories</h1>
+                <h1 className='allComics allCategories'>All Categories</h1>
                 <div className='listCategories'>
                     <ul>
                         {categories.map((category, index) => (

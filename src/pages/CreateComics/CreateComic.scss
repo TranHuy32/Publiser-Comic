@@ -89,3 +89,10 @@ input.createSubmitBtn {
         background-color: rgb(20, 171, 231);
     }
 }
+input.isPussingBtn {
+    font: 18px 'Roboto', sans-serif;
+    background-color: rgb(20, 171, 231);
+    height: 40px;
+    width: 200px;
+    margin-left: calc(31.5vw - 100px);
+}

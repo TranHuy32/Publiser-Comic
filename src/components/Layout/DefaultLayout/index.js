@@ -61,13 +61,11 @@ function DefaultLayout({ children }) {
                                         <div className='UserInfo'>
                                             <div className="login">
                                                 <a href="/publisher/login">
-                                                    {' '}
                                                     Đăng nhập
                                                 </a>
                                             </div>
                                             <div className="register">
                                                 <a href="/publisher/register">
-                                                    {' '}
                                                     Đăng ký
                                                 </a>
                                             </div>

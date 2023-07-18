@@ -75,9 +75,11 @@ const MainRoutes = () => {
                 <Route
                     path={'/comic/:comic_id'}
                     element={
-                        <DefaultLayout>
-                            <DetailComic />
-                        </DefaultLayout>
+                        <RequireAuth loginPath={'/publisher/login'}>
+                            <DefaultLayout>
+                                <DetailComic />
+                            </DefaultLayout>
+                        </RequireAuth>
                     }
                     exact
                 />
@@ -108,9 +110,11 @@ const MainRoutes = () => {
                 <Route
                     path={'/chapter/:id'}
                     element={
-                        <DefaultLayout>
-                            <DetailChapter />
-                        </DefaultLayout>
+                        <RequireAuth loginPath={'/publisher/login'}>
+                            <DefaultLayout>
+                                <DetailChapter />
+                            </DefaultLayout>
+                        </RequireAuth>
                     }
                     exact
                 />
@@ -129,9 +133,11 @@ const MainRoutes = () => {
                 <Route
                     path={'/categories/all'}
                     element={
+                        <RequireAuth loginPath={'/publisher/login'}>
                             <DefaultLayout>
                                 <Categories />
                             </DefaultLayout>
+                        </RequireAuth>
                     }
                     exact
                 />

@@ -10,7 +10,6 @@ const refreshApi = createRefresh({
         refreshTokenExpiresAt,
         authUserState,
     }) => {
-        console.log(refreshToken);
         try {
             const response = await axios.post(
                 `${beURL}publisherauth/refresh`,
