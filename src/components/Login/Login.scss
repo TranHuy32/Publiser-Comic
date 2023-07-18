@@ -14,13 +14,14 @@
     color: #121212;
     margin-bottom: 5%;
 }
-
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .labelName {
-
-    > p {
-        margin-left: 34%;
-        width: 50%;
-        width: 91px;
+    p {
+        padding: 10px 0;
         height: 23px;
         font-family: 'Roboto', sans-serif;
         font-style: normal;
@@ -34,7 +35,6 @@
         color: #121212;
     }
     > input {
-        margin-left: 34%;
         width: 50%;
         padding-left: 3px;
         box-sizing: border-box;
@@ -49,14 +49,12 @@
 }
 
 .labelPass {
+    margin-top: 3%;
     > p {
-        margin-left: 34%;
-        width: 50%;
         padding-left: 3px;
         // position: absolute;
         width: 91px;
         height: 23px;
-
         font-family: 'Roboto', sans-serif;
         font-style: normal;
         font-weight: 400;
@@ -69,7 +67,6 @@
         color: #121212;
     }
     > input {
-        margin-left: 34%;
         width: 50%;
         padding-left: 3px;
         box-sizing: border-box;
@@ -86,8 +83,7 @@
 }
 
 .buttonLogin {
-    margin-left: 43%;
-    margin-top: 10%;
+    margin-top: 20%;
     height: 34px;
     width: 143px;
     border-radius: 10px;
