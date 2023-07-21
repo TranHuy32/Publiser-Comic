@@ -114,9 +114,9 @@ export default function DetailComic() {
                         {comic?.chapters.map((chapter, index) => {
                             // Chuyển giá trị chapter_number thành chuỗi
                             const formattedChapterNumber =
-                                chapter.chapter_number.toString();
-
-                            // Tách phần nguyên và phần thập phân
+                                chapter?.chapter_number
+                                    ? chapter.chapter_number.toString()
+                                    : '0';
                             const [integerPart, decimalPart] =
                                 formattedChapterNumber.split('.');
 
