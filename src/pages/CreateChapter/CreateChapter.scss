@@ -1,8 +1,7 @@
-
 .wrapperCreateChapters {
     display: flex;
     flex-direction: column-reverse;
-    width: 90%;  
+    width: 90%;
     justify-content: center;
     margin: 0 auto;
     // margin-top: 60px;
@@ -11,10 +10,17 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    margin: 50px 0px;
-    margin-bottom: 50px;
+    margin: 20px 0px;
+    // margin-bottom: 50px;
 }
-
+.createChapterForm:first-child {
+    margin-top: 50px;
+}
+// .createChapterForm {
+//     :first-child {
+//         margin-top: 50px;
+//     }
+// }
 .createChapterForm > div > label {
     font: 18px 'Roboto', sans-serif;
     width: 900px;
@@ -90,10 +96,10 @@ input.isPussingChapterBtn {
     text-align: center;
     cursor: default;
 }
-div.wrapperCreateChapters h2 {
-    text-align: center;
-    margin-top: 30px;
-}
+// div.wrapperCreateChapters h2 {
+//     text-align: center;
+//     margin-top: 30px;
+// }
 
 div.listCreateChapterBtn {
     flex-direction: row;

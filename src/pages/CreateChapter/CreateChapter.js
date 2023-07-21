@@ -6,10 +6,12 @@ import './CreateChapter.scss';
 const CreateChapter = () => {
     const token = localStorage.getItem('token');
     const [isSucess, setIsSucess] = useState(false);
+    const [chapterIsExisted, setChapterIsExisted] = useState(false);
     const navigate = useNavigate();
 
     const [state, setState] = useState({
         chapter_des: '',
+        chapter_number: '',
         image_thumnail: null,
         images_content: [null],
     });
@@ -21,6 +23,7 @@ const CreateChapter = () => {
 
     useEffect(() => {
         setIsSucess(false);
+        setChapterIsExisted(false);
     }, [state]);
 
     const changeHandler = (e) => {
@@ -60,11 +63,14 @@ const CreateChapter = () => {
         headers: { Authorization: `Bearer ${token}` },
     };
     const submitHandler = (e) => {
+        setIsSucess(false);
+        setChapterIsExisted(false);
         setIsPushing(true);
         e.preventDefault();
         const formData = new FormData();
         formData.append('comic_id', comic_id);
         formData.append('chapter_des', state.chapter_des);
+        formData.append('chapter_number', state.chapter_number);
         formData.append('image_thumnail', state.image_thumnail);
         for (let i = 0; i < state.images_content.length; i++) {
             formData.append('images_content', state.images_content[i]);
@@ -72,8 +78,13 @@ const CreateChapter = () => {
         axios
             .post(`${beURL}chapters/createFile`, formData, config)
             .then((response) => {
+                console.log(response.data);
+                if (response.data === 'Chapter number existed') {
+                    setChapterIsExisted(true);
+                } else {
+                    setIsSucess(true);
+                }
                 setIsPushing(false);
-                setIsSucess(true);
                 // console.log('1', fireBaseToken);
                 // if (fireBaseToken) {
                 //     // fireBaseState.append('token', fireBaseToken);
@@ -95,7 +106,7 @@ const CreateChapter = () => {
                 console.log(error);
             });
     };
-    const { chapter_des } = state;
+    const { chapter_des, chapter_number } = state;
 
     return (
         <div className="wrapperCreateChapters">
@@ -107,6 +118,17 @@ const CreateChapter = () => {
                         placeholder="Tên chapter..."
                         name="chapter_des"
                         value={chapter_des}
+                        onChange={changeHandler}
+                        required
+                    />
+                </div>
+                <div>
+                    <label>Chapter số:</label>
+                    <input
+                        type="number"
+                        placeholder="Chapter số..."
+                        name="chapter_number"
+                        value={chapter_number}
                         onChange={changeHandler}
                         required
                     />
@@ -168,8 +190,11 @@ const CreateChapter = () => {
                         defaultValue="Back to comic"
                     />
                 </div>
+                {isSucess && <h2>Đăng chapter thành công</h2>}
+                {chapterIsExisted && (
+                    <h2>Chapter {state.chapter_number} đã tồn tại</h2>
+                )}
             </form>
-            {isSucess && <h2>Đăng chapter thành công</h2>}
         </div>
     );
 };
