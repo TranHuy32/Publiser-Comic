@@ -7,8 +7,10 @@ const UpdateChapter = () => {
     const token = localStorage.getItem('token');
     const navigate = useNavigate();
     const beURL = process.env.REACT_APP_BE_URL;
+    const [chapterIsExisted, setChapterIsExisted] = useState(false);
     const [state, setState] = useState({
         chapter_des: '',
+        chapter_number: '',
         image_thumnail: null,
         images_content: [null],
     });
@@ -39,7 +41,6 @@ const UpdateChapter = () => {
         } else {
             setState({ ...state, [e.target.name]: e.target.value });
         }
-        console.log();
     };
 
     const isImageFile = (file) => {
@@ -55,6 +56,7 @@ const UpdateChapter = () => {
 
         const formData = new FormData();
         formData.append('chapter_des', state.chapter_des);
+        formData.append('chapter_number', state.chapter_number);
         formData.append('image_thumnail', state.image_thumnail);
         for (let i = 0; i < state.images_content.length; i++) {
             formData.append('images_content', state.images_content[i]);
@@ -62,13 +64,17 @@ const UpdateChapter = () => {
         axios
             .put(`${beURL}chapters/update/${chapter_id}`, formData, config)
             .then((response) => {
-                navigate(`/comic/${response.data.comic_id}`);
+                if (response.data === 'Chapter number existed') {
+                    setChapterIsExisted(true);
+                } else {
+                    navigate(`/comic/${response.data.comic_id}`);
+                }
             })
             .catch((error) => {
                 console.log(error);
             });
     };
-    const { chapter_des } = state;
+    const { chapter_des, chapter_number } = state;
 
     return (
         <div className="wrapperCreateChapters">
@@ -80,6 +86,16 @@ const UpdateChapter = () => {
                         placeholder="Tên chapter..."
                         name="chapter_des"
                         value={chapter_des}
+                        onChange={changeHandler}
+                    />
+                </div>
+                <div>
+                    <label>Chapter số (chỉnh sửa):</label>
+                    <input
+                        type="number"
+                        placeholder="chapter ..."
+                        name="chapter_number"
+                        value={chapter_number}
                         onChange={changeHandler}
                     />
                 </div>
@@ -125,6 +141,9 @@ const UpdateChapter = () => {
                         value="Sửa Chapter"
                     />
                 </div>
+                {chapterIsExisted && (
+                    <h2>Chapter {state.chapter_number} đã tồn tại</h2>
+                )}
             </form>
         </div>
     );

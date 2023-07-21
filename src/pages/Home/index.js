@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Home.scss';
 export default function Home() {
-
     const beURL = process.env.REACT_APP_BE_URL;
 
     const [comics, setComics] = useState([]);

@@ -42,15 +42,19 @@ export default function DetailComic() {
     }, [comic_id, token, beURL, isDelete]);
     const handleDeleteChapter = (chapterId) => {
         console.log(chapterId);
-        const confirmDelete = window.confirm("Bạn có muốn xóa chapter này không?");
+        const confirmDelete = window.confirm(
+            'Bạn có muốn xóa chapter này không?',
+        );
         if (confirmDelete) {
             axios
                 .delete(`${beURL}chapters/delete/${chapterId}`, config)
                 .then((response) => {
-                    if (response.data === "Successful delete") {
+                    if (response.data === 'Successful delete') {
                         setIsDelete(!isDelete);
                     } else {
-                        window.alert("Xóa không thành công. Phải để lại ít nhất 1 chapter!!!")
+                        window.alert(
+                            'Xóa không thành công. Phải để lại ít nhất 1 chapter!!!',
+                        );
                     }
                 })
                 .catch((error) => {
@@ -58,6 +62,7 @@ export default function DetailComic() {
                 });
         }
     };
+    console.log(comic);
     if (comic) {
         return (
             <div className="detailComic">
@@ -106,41 +111,52 @@ export default function DetailComic() {
                 <div className="detailComicListChapter">
                     <p>Dang sách chương: </p>
                     <ul>
-                        {comic.chapters.map((chapter, index) => (
-                            <li key={index} className="detailComicChapter">
-                                <a
-                                    className="chapterNumber"
-                                    href={`/chapter/${chapter.chapter_id}`}
-                                >{`Chapter ${index + 1}: ${chapter.chapter_des
-                                    }`}</a>
-                                {isAuth && (
-                                    <>
-                                        <p
-                                            className="chapterUpdate"
-                                            onClick={() =>
-                                                handleUpdateChapter(
-                                                    chapter.chapter_id,
-                                                )
-                                            }
-                                        >
-                                            Chỉnh sửa
-                                        </p>
-                                        <p
-                                            className="chapterDelete"
-                                            onClick={() =>
-                                                handleDeleteChapter(
-                                                    chapter.chapter_id,
-                                                )
-                                            }
-                                        >
-                                            Xóa
-                                        </p>
-                                    </>
+                        {comic?.chapters.map((chapter, index) => {
+                            // Chuyển giá trị chapter_number thành chuỗi
+                            const formattedChapterNumber =
+                                chapter.chapter_number.toString();
 
+                            // Tách phần nguyên và phần thập phân
+                            const [integerPart, decimalPart] =
+                                formattedChapterNumber.split('.');
 
-                                )}
-                            </li>
-                        ))}
+                            return (
+                                <li key={index} className="detailComicChapter">
+                                    <a
+                                        className="chapterNumber"
+                                        href={`/chapter/${chapter.chapter_id}`}
+                                    >
+                                        {`Chapter ${integerPart}${
+                                            decimalPart ? ',' + decimalPart : ''
+                                        }: ${chapter.chapter_des}`}
+                                    </a>
+                                    {isAuth && (
+                                        <>
+                                            <p
+                                                className="chapterUpdate"
+                                                onClick={() =>
+                                                    handleUpdateChapter(
+                                                        chapter.chapter_id,
+                                                    )
+                                                }
+                                            >
+                                                Chỉnh sửa
+                                            </p>
+                                            <p
+                                                className="chapterDelete"
+                                                onClick={() =>
+                                                    handleDeleteChapter(
+                                                        chapter.chapter_id,
+                                                    )
+                                                }
+                                            >
+                                                Xóa
+                                            </p>
+                                        </>
+                                    )}
+                                </li>
+                            );
+                        })}
                     </ul>
                 </div>
             </div>
